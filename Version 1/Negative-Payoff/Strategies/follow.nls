@@ -1,0 +1,15 @@
+;; Load External Files
+__includes [
+  "../../helper-functions.nls"
+]  
+
+to-report follow-everyone [topm]
+  report topm
+end
+
+
+to-report follow-peers [connections]
+  
+  draw-connections connections
+  report connections
+end

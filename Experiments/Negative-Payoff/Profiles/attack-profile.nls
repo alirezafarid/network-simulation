@@ -1,0 +1,27 @@
+;top-k random
+breed [attack-profiles attack-profile]
+
+to-report attack-profiles-rank
+  report []
+end
+
+to-report attack-profiles-payoff 
+  report score-attacker-stock
+end
+
+to-report attack-profiles-like
+  report []
+end
+
+to-report attack-profiles-follow
+  report []
+end
+
+to-report attack-profiles-publish
+  report publish-with-threshold-and-cost
+end
+
+to-report attack-profiles-leave? 
+  report false
+end
+

@@ -1,0 +1,31 @@
+;top-k random
+breed [stock-follow-similarity-profiles stock-follow-similarity-profile]
+
+to-report stock-follow-similarity-profiles-rank
+  let rank-list follow-similarity
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report stock-follow-similarity-profiles-payoff 
+  let reward 1.5
+  let punishment 0.5
+  report score-new-with-penalty reward punishment
+end
+
+to-report stock-follow-similarity-profiles-like
+  report []
+end
+
+to-report stock-follow-similarity-profiles-follow
+  report []
+end
+
+to-report stock-follow-similarity-profiles-publish
+  report []
+end
+
+to-report stock-follow-similarity-profiles-leave? 
+  report active?
+end

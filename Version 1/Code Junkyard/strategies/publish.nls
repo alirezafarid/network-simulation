@@ -1,0 +1,13 @@
+to-report publish-random
+  let published [] 
+  
+  hatch-documents 1 [
+    documents-setup 1 tags set color grey
+    set xcor max-pxcor - 2 * random max-pxcor 
+    set ycor max-pycor - 2 * random max-pycor 
+    show self
+    set published lput self published  
+  ]  
+  
+  report published
+end

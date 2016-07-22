@@ -1,0 +1,49 @@
+;;SIMULATOR: VERSION 1
+
+
+
+globals [
+  output-file1
+  output-file2
+]
+
+to setup
+	simulator-setup
+	let t-list n-values 2 [?]
+	let t-count 1
+	let k 5
+	let m 3
+
+	create-documents 25 [documents-setup t-count [1]]
+	create-documents 25 [documents-setup t-count [0]]
+	
+  create-random-profiles 2 [profiles-setup k m t-count [1] red]
+  create-attack-profiles 2 [profiles-setup k m t-count [0] green]
+
+
+	my-layout  
+  new-data-file
+end
+
+to new-data-file
+  let labname "Random-Vs-Popular-with-isolated-tastes"
+  set-current-directory (word "C:/Netlogo/Experiment-Data/" labname)
+  
+  set output-file1 "peer-stats.csv"
+  set output-file2 "trending.csv"
+  
+  
+  file-open output-file1
+  file-print "ticks, payoff this turn, turn number, behaviorspace-run-number" 
+  file-flush
+  file-close
+  
+end
+
+to store-results 
+;Test export abillity
+  file-open output-file1
+  file-print (word behaviorspace-run-number "," ticks "," turns "," turn-payoff) 
+  file-flush
+  file-close
+end

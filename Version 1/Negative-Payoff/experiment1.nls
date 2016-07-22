@@ -1,0 +1,23 @@
+;;SIMULATOR: VERSION 1
+
+
+
+globals [
+  output-file1
+  output-file2
+]
+
+to setup
+  simulator-setup
+  let t-list n-values 2 [?]
+  let t-count 2
+  let k 5
+  let m 3
+
+  create-documents 400 [documents-setup 1 [1 0]]
+  
+  ;create-peer-similarity-profiles 50 [profiles-setup k m 1 [1 0] green] ;208     
+  create-complete-random-profiles 50 [profiles-setup k m 1 [1 0] yellow] ;197     
+
+  my-layout    
+end

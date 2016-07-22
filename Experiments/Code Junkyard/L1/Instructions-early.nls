@@ -1,0 +1,158 @@
+;These are the tests for when the network is first established
+to Starting-Network-1
+  let t-list n-values 2 [?]
+  let t-count 1
+  let k 5
+  let m 3
+  
+  setup
+  
+  create-documents 25 [documents-setup t-count [1] set color grey]
+  create-documents 25 [documents-setup t-count [0] set color grey]
+  create-profiles1 10 [profiles-setup k m t-count [1] red]
+  create-profiles1 10 [profiles-setup k m t-count [0] red]
+  create-profiles3 1 [profiles-setup k m t-count t-list cyan set active? false]
+  
+  my-layout  
+  repeat 40 [go]
+  
+  ask profiles1 [set active? false]
+  ask profiles3 [set active? true]
+  
+  repeat 10 [go show-scores] 
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+to Starting-Network-2
+  let t-list n-values 2 [?]
+  let t-count 1
+  let k 5
+  let m 3
+  
+  setup
+  
+  create-documents 25 [documents-setup t-count [1] set color grey]
+  create-documents 25 [documents-setup t-count [0] set color grey]
+  create-profiles1 10 [profiles-setup k m t-count [1] red]
+  create-profiles1 10 [profiles-setup k m t-count [0] red]
+  create-profiles3 1 [profiles-setup k m t-count t-list cyan set active? false]
+  
+  my-layout  
+  repeat 10 [go]
+  
+  ask profiles1 [set active? false]
+  ask profiles3 [set active? true]
+  
+  repeat 10 [go show-scores] 
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+to Starting-Network-3
+  let t-list n-values 2 [?]
+  let t-count 1
+  let k 5
+  let m 3
+  
+  setup
+  
+  create-documents 25 [documents-setup t-count [1] set color grey]
+  create-documents 25 [documents-setup t-count [0] set color grey]
+  create-profiles1 10 [profiles-setup k m t-count [1] red]
+  create-profiles1 10 [profiles-setup k m t-count [0] red]
+  create-profiles4 1 [profiles-setup k m t-count t-list cyan set active? false]
+  
+  my-layout  
+  repeat 10 [go]
+  
+  ask profiles1 [set active? false]
+  ask profiles4 [set active? true]
+  
+  repeat 10 [go show-scores] 
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+to Starting-Network-4
+  let t-list n-values 2 [?]
+  let t-count 1
+  let k 5
+  let m 3
+  
+  setup
+  
+  create-documents 25 [documents-setup t-count [1] set color grey]
+  create-documents 25 [documents-setup t-count [0] set color grey]
+  create-profiles1 10 [profiles-setup k m t-count [1] red]
+  create-profiles1 10 [profiles-setup k m t-count [0] red]
+  create-profiles5 1 [profiles-setup k m t-count t-list cyan set active? false]
+  
+  my-layout  
+  repeat 10 [go]
+  
+  ask profiles1 [set active? false]
+  ask profiles5 [set active? true]
+  
+  repeat 10 [go show-scores] 
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+to Starting-Network-5
+  let t-list n-values 2 [?]
+  let t-count 1
+  let k 5
+  let m 3
+  
+  setup
+  
+  create-documents 25 [documents-setup t-count [1] set color grey]
+  create-documents 25 [documents-setup t-count [0] set color grey]
+  create-profiles1 10 [profiles-setup k m t-count [1] red]
+  create-profiles1 10 [profiles-setup k m t-count [0] red]
+  create-profiles6 1 [profiles-setup k m t-count t-list cyan set active? false]
+  
+  my-layout  
+  repeat 10 [go]
+  
+  ask profiles1 [set active? false]
+  ask profiles6 [set active? true]
+  
+  repeat 10 [go show-scores] 
+end
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to profiles-setup [k m tag-count tag-list colour]
+  turtles-layout ;Standard layout
+  set score 0
+  set turns 0
+  set max-k k
+  set max-m m
+  set document? false
+  set active? true
+  set tags n-of tag-count tag-list
+  set color colour
+end
+
+to show-scores
+  show ticks
+  show (word "profiles1 - " sum [score] of profiles1)
+  show (word "profiles2 - " sum [score] of profiles2)
+  show (word "profiles3 - " sum [score] of profiles3)
+  show (word "profiles4 - " sum [score] of profiles4)
+  show (word "profiles5 - " sum [score] of profiles5)
+  show (word "profiles6 - " sum [score] of profiles6)
+end
+
+to documents-with-tag [tag]
+  show count turtles with [document? and member? tag tags]
+end

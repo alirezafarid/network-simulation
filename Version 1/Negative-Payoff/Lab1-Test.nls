@@ -1,0 +1,57 @@
+;;SIMULATOR: VERSION 1
+
+__includes [
+	"profiles/sample-profile.nls"
+	"strategies/candidates.nls"
+	"strategies/follow.nls"
+	"strategies/leave.nls"
+	"strategies/like.nls"
+	"strategies/payoff.nls"
+	"strategies/publish.nls"
+	"strategies/rank.nls"
+]
+
+to setup
+	simulator-setup
+	let t-list n-values 2 [?]
+	let t-count 1
+	let k 5
+	let m 3
+
+	create-documents 25 [documents-setup t-count [1]]
+	create-documents 25 [documents-setup t-count [0]]
+	create-sample-profiles 10 [profiles-setup k m t-count [1] red]
+
+	my-layout  
+  new-data-file
+end
+
+to new-data-file
+  let labname "l3"
+  set-current-directory (word "C:/Netlogo/Experiment-Data/" labname)
+  
+  let i 0
+  set file  (word "Simulation-" i ".csv")
+  while [file-exists? file] [
+    set i i + 1
+    set file (word "Simulation-" i ".csv")
+  ]
+  
+  
+  set file "test1.csv"
+  
+  if behaviorspace-run-number = 1 [
+    file-open file
+    file-print "ticks, payoff this turn, turn number, behaviorspace-run-number" 
+    file-flush
+    file-close
+  ]
+end
+
+to store-results 
+;Test export abillity
+  file-open file
+  file-print (word ticks "," turn-payoff "," turns "," behaviorspace-run-number) 
+  file-flush
+  file-close
+end

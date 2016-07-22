@@ -1,0 +1,31 @@
+;top-k random
+breed [attack-profiles attack-profile]
+
+to-report attack-profiles-rank
+  report []
+end
+
+to-report attack-profiles-payoff 
+  let reward 0.05
+  let turncost -1
+  report score-attacker-with-turn-cost reward turncost
+end
+
+to-report attack-profiles-like
+  report []
+end
+
+to-report attack-profiles-follow
+  report []
+end
+
+to-report attack-profiles-publish
+  let threshold 4
+  let cost 4
+  let chance 0.1  report publish-with-threshold-and-cost threshold cost
+end
+
+to-report attack-profiles-leave? 
+  report false
+end
+

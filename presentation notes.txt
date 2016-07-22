@@ -1,0 +1,50 @@
+Research Presentation
+
+Goal: We're investigating the behaviour of different profiles in a file sharing network. 
+
+Simulation (The basics):
+We are simulating a network made up of peers and documents. Peers can act, documents can not. 
+Only one peer can act at a time. The peer who is acting will be referred to as the user. The user is randomly selected from the set of all peers each turn (there is no order).
+
+
+Peers are instances of a profile. Different Profiles will usually have a different combination of strategies.
+
+Every profile possesses 6 strategies. These strategies are executed every time the peer acts (everytime the peer becomes the user).
+- Rank
+- Payoff
+- Like
+- Follow
+- Publish
+- Leave
+
+Rank: Will return an ordered set of documents. 
+
+Payoff: Will determine the reward/punishment given to the user this turn. 
+IE: if the documents in the peers rank list have tags in common with the peer, then one possible payoff strategy will reward the peer for consuming those documents.
+
+Like: Will determine which documents the user will like. By liking a document, the user forms a link to that document. Allowing the user to access the document at any point in the future.
+
+Follow: This is the same as the like strategy, but instead of being formed with documents, the links connect the user to other peers.
+
+Publish: Allows the user to create new documents.
+
+Leave: Allows a peer to leave and rejoin a network.
+
+
+Which brings us to one of my earliest experiments...
+
+Experiment one:
+In this experiment, we observe the success of profiles depending on the age of the network.
+
+The age of the network is the sum of how many times the peers in the network have acted. 
+The success of a profile is determined by the average utility of the peers with that profile.
+
+
+Experiment two: viral vs advertising
+
+
+
+Experiment three: learning 
+- dissappointed that when modifying links to peers, there was no significant improvement... even when changing mutating the tag values
+
+- forgetting function applied to learning links

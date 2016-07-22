@@ -1,0 +1,44 @@
+;top-k random
+breed [document-popularity-profiles document-popularity-profile]
+
+to-report document-popularity-profiles-rank
+  let rank-list topk-doc-popularity-with-memory
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report document-popularity-profiles-payoff 
+  let reward 1.5
+  let punishment 0.5
+  let turncost 0
+  
+  report score-new-with-penalty reward punishment
+end
+
+to-report document-popularity-profiles-like
+  let like-list like-tags-in-topk
+  draw-connections like-list
+  report like-list
+end
+
+to-report document-popularity-profiles-follow
+  
+  let like-list like-tags-in-topk
+  let peers []
+  ask connect-links with [ member? end2 like-list = true and end1 != myself]
+  [ set peers lput end1 peers]
+  set peers remove-duplicates peers
+  report  follow-peers peers
+end
+
+to-report document-popularity-profiles-publish
+  let cost 2
+  ;report publish-with-cost cost
+  report []
+end
+
+to-report document-popularity-profiles-leave? 
+  leave-join-network
+  report active?
+end

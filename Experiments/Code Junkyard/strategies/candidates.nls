@@ -1,0 +1,62 @@
+to-report topm-random 
+  let topm [self] of other turtles with [not document?]
+  
+  report smart-sublist topm max-m
+end
+
+to-report topm-shared
+  ;topm is source all in-connections from destination of all our out-connections
+  let out-destinations [end2] of my-out-connect-links
+  let in-destinations [in-connect-link-neighbors] of turtle-set out-destinations
+  
+  
+  let topm [self] of other turtle-set in-destinations
+  report smart-sublist topm max-m
+end
+
+to-report topm-from-topk
+  update-rank-links
+  let active-turtle self
+  
+  ;Ask each of the top-k documents
+  ask turtle-set turn-ranked [
+    ;Who liked you? (other than myself)
+    foreach filter [[who] of ? != [who] of active-turtle] ([end1] of my-in-connect-links) [
+      ;Lets rank them higher
+      ask rank-link ([who] of myself) ([who] of ?) [
+        set weight weight + 1  
+      ]
+    ]
+  ]
+  
+  
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = false]
+  ;show map [[weight] of ?] topk
+  set topk map [[end2] of ?] topk
+
+  report topk
+end
+
+to-report topm-from-liked
+  update-rank-links
+  let active-turtle self
+  let liked-docs filter [[document?] of ?] [end2] of my-out-connect-links
+  
+  ;Ask each of the top-k documents
+  ask turtle-set liked-docs [
+    ;Who liked you? (other than myself)
+    foreach filter [[who] of ? != [who] of active-turtle] ([end1] of my-in-connect-links) [
+      ;Lets rank them higher
+      ask rank-link ([who] of myself) ([who] of ?) [
+        set weight weight + 1  
+      ]
+    ]
+  ]
+  
+  
+  let topk reverse filter [[weight] of ? > 0] sort-on [weight] my-out-rank-links with [[document?] of end2 = false]
+  ;show map [[weight] of ?] topk
+  set topk map [[end2] of ?] topk
+
+  report topk
+end

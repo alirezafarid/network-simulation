@@ -1,0 +1,26 @@
+to iteration-check
+  
+  ifelse active? [
+    let length-list length turn-payoff-list
+    if length-list >= 3 [
+      if (item (length-list - 1) turn-payoff-list < 0 and item (length-list - 2) turn-payoff-list < 0 and item (length-list - 3) turn-payoff-list < 0 and turn-payoff < 0) [
+        set active? false 
+        set color color - 2
+      ] 
+    ]
+  ]
+  [
+    if ticks - last-turn > 50 [
+      set active? true 
+      set color color + 2
+    ]
+  ]
+    
+
+  
+  
+  
+  
+  
+  
+end

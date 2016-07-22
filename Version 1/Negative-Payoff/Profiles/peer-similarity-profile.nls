@@ -1,0 +1,36 @@
+;top-k random
+breed [peer-similarity-profiles peer-similarity-profile]
+
+to-report peer-similarity-profiles-rank
+  let rank-list topk-peer-similarity-with-memory
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report peer-similarity-profiles-payoff 
+  let reward 1.5
+  let punishment  0.5
+  let turncost  0
+  report score-new-with-penalty-turncost reward punishment turncost
+end
+
+to-report peer-similarity-profiles-like
+  let like-list like-tags-in-topk
+  draw-connections like-list
+  report like-list
+end
+
+to-report peer-similarity-profiles-follow  
+  report []
+end
+
+to-report peer-similarity-profiles-publish
+  let cost 2
+  report []
+end
+
+to-report peer-similarity-profiles-leave? 
+  leave-join-network
+  report active?
+end

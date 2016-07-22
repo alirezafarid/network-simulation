@@ -1,0 +1,48 @@
+;top-k random
+breed [popular-profiles popular-profile]
+
+to-report popular-profiles-rank
+  let rank-list topk-doc-popularity
+  let remembered-turtles ([end2] of my-out-memory-links)
+  set rank-list filter [not member? ? remembered-turtles] rank-list
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report popular-profiles-payoff 
+  let reward 1
+  let punishment 0.5
+  report score-new-with-penalty reward punishment
+end
+
+to-report popular-profiles-like
+  let like-list like-tags-in-topk
+  draw-connections like-list
+  report like-list
+end
+
+to-report popular-profiles-follow
+  let candidates topm-from-liked-in-topk
+  let remembered-turtles ([end2] of my-out-memory-links)
+  set candidates filter [not member? ? remembered-turtles] candidates
+  set candidates smart-sublist candidates max-m
+  draw-memories candidates
+  
+  let follow-list follow-everyone candidates
+  draw-connections follow-list
+  
+  report follow-list
+end
+
+to-report popular-profiles-publish
+  let threshold 4
+  let cost 2
+  let chance 0.2
+  report publish-with-threshold-cost-and-chance threshold cost chance
+end
+
+to-report popular-profiles-leave? 
+  report 0
+end
+

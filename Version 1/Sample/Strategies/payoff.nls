@@ -1,0 +1,29 @@
+;; SUM - Score is based off how many documents in the top-k a peer will like. +1 if they like the document, -1 otherwise
+to-report score-sum [active-turtle topk like-list]
+  let temp-score 0
+  foreach topk [
+    ifelse member? ? like-list [set temp-score temp-score + 1] [set temp-score temp-score - 1]
+  ]
+  report temp-score
+end
+
+;; NEW - Score is based off how many new documents a peer will like (if it already likes one, it will not count). +1 if they like a new document
+to-report score-new 
+  let temp-score 0
+  let remembered-turtles map [[end2] of ?] ([self] of my-out-memory-links with [last timestamp < ticks])
+  let remembered-documents (turtle-set remembered-turtles) with [document?]  
+  
+  foreach turn-ranked [
+    if (not member? ? remembered-documents) [
+      foreach [tags] of ? [
+        if member? ? [tags] of self [set temp-score temp-score + 1] 
+      ] 
+    ] 
+  ]
+  
+  report temp-score
+end
+
+
+
+

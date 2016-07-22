@@ -1,0 +1,143 @@
+
+;2D-list testing
+to test-2D
+  clear-all
+  crt 10
+  ;Create a list of turtles
+  let agents-list [self] of turtles
+  ;Create empty list, which will be the top level of the TwoD list
+  let TwoD-list []
+  
+  ;Populate the TwoD-list: [[turtle 0, 0], [turtle 1, 0], ...]
+  foreach agents-list [
+    set TwoD-list (lput (list ? 0) TwoD-list)
+  ]
+  show TwoD-list 
+  
+  repeat 5 [
+    ;Change a value in the TwoD-list
+    let rand-index random (length TwoD-list) ;select a random index
+    ;The next line is what makes it a huge headache, basically you have to select a list at the top level to replace, and then select the list at the lower level to replace it.
+    ;This entire line of code is just adding one to an element
+    set TwoD-list (replace-item rand-index TwoD-list (replace-item 1 (item rand-index TwoD-list) (item 1 (item rand-index TwoD-list) + 1))) 
+    show TwoD-list
+  ]
+
+  
+  show "Sorted"
+  set TwoD-list reverse sort-by [last ?1 < last ?2] TwoD-List
+  show twoD-list
+end
+
+
+;Test if multiple links can be created in the same space - they cant
+to test-multi-links
+  clear-all
+  crt 2 [
+    set xcor max-pxcor - 2 * random max-pxcor 
+    set ycor max-pycor - 2 * random max-pycor
+  ]
+  
+  ask turtle 1 [
+    create-link-with turtle 0
+    create-link-with turtle 0
+  ]
+  
+  ask turtle 0 [create-link-with turtle 1]
+  
+  show count links ;only one
+end
+
+directed-link-breed [topk-rank-links topk-rank-link]
+topk-rank-links-own [weight]
+
+;Try sorting links
+to test-links
+  clear-all
+  crt 10 [
+    set xcor max-pxcor - 2 * random max-pxcor 
+    set ycor max-pycor - 2 * random max-pycor
+  ]
+  
+  ask turtle 1 [create-topk-rank-links-to other turtles [set weight random 3]]
+  show [weight] of topk-rank-links
+  
+  let sorted-list reverse sort-on [weight] topk-rank-links
+  foreach sorted-list [show (word [weight] of ? " " [end2] of ?)]
+  
+  show (word [weight] of link-set sorted-list " " [end2] of link-set sorted-list)
+  
+  show map [[weight] of ?] sorted-list 
+end
+
+;Try finding links that have not been created
+to test-link-duplicates
+  clear-all
+  crt 10 [
+    set xcor max-pxcor - 2 * random max-pxcor 
+    set ycor max-pycor - 2 * random max-pycor
+  ]
+  
+  ask turtle 1 [
+    create-topk-rank-links-to n-of 3 other turtles [
+      set weight random 3
+    ]
+  ]
+  
+  ask turtle 1 [
+    show other turtles with [not in-topk-rank-link-neighbor? myself]  
+  ]
+end
+
+
+to test-list
+  show sentence [0 1] [0 2]
+  
+  clear-all
+  crt 3
+  ask turtle 0 [
+    show (word self)
+    ask turtle 1 [
+      show (word myself " " self) 
+      ask turtle 2 [
+        show (word myself " " self) 
+      ]
+    ]
+  ]
+end
+
+;Test export abillity
+to test-export
+  let a n-values 9 [? * ?]
+  show a
+  
+  let labname "l2"
+  set-current-directory (word "C:/Netlogo/Experiment-Data/" labname)
+  
+  let i 0
+  let test-file  (word "Simulation-" i ".txt")
+  while [file-exists? test-file] [
+    set i i + 1
+    set test-file (word "Simulation-" i ".txt")
+  ]
+  
+  file-open test-file
+  file-print "HELLO WORLD"
+  file-flush
+  file-close
+  
+  file-open test-file
+  show ""
+  show file-read-line
+  file-close
+end
+
+;test list overlap
+to test-overlap
+ show shared-member [0 1] [1 2]
+ show shared-member [0 1] [2 3]  
+ 
+ show length filter [member? ? [1 6 7]] [1 2 4 5]
+ 
+ show filter [? > 15] [12 14 15 16]  
+end

@@ -1,0 +1,18 @@
+;;;;;;;;;;;;;;;
+;; DOCUMENTS ;;
+;;;;;;;;;;;;;;;
+
+breed [documents document]
+
+
+;;;;;;;;;;;
+;; LINKS ;;
+;;;;;;;;;;;
+
+directed-link-breed [connect-links connect-link] ;Like and follow are basically the same thing, one is when it connects a user to documents, the other is when it connect them to peers
+directed-link-breed [memory-links memory-link]   ;Used to remember when something last turned up in topk/topm
+directed-link-breed [rank-links rank-link]       ;Used to create temporary perspective based ranks
+
+connect-links-own [timestamps]
+memory-links-own [timestamps]
+rank-links-own [weight]

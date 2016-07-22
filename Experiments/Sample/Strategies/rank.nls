@@ -1,0 +1,178 @@
+to update-rank-links
+  ask my-out-rank-links [
+    set weight 0
+  ]
+  
+  create-rank-links-to other turtles [
+    set hidden? true
+    set color magenta
+    set weight 0 
+  ]
+end
+
+
+to-report topk-random
+  update-rank-links
+  let topk [self] of turtles with [document?]
+  report topk
+end
+
+to-report topk-doc-popularity
+  update-rank-links
+  
+  ask my-out-rank-links with [[document?] of end2 = true] [
+    let popularity 0
+    ask end2 [
+      set popularity count my-in-connect-links
+    ]
+    set weight popularity
+  ]
+  
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = true]
+  set topk map [[end2] of ?] topk
+
+  report topk
+end
+
+
+to-report topk-peer-popularity
+  update-rank-links
+
+  let peer-links my-out-rank-links with [[document?] of end2 = false]  
+  let doc-links my-out-rank-links with [[document?] of end2 = true]
+  
+  ask peer-links [
+    let popularity 0
+    let active-peer myself
+    ask end2 [
+      set popularity count my-in-connect-links
+    
+      let docs [end2] of my-out-connect-links with [[document?] of end2 = true]
+      
+      foreach docs [
+        ask rank-link [who] of active-peer [who] of ? [
+          if weight < popularity [set weight popularity]
+        ] 
+      ]
+    ]
+    set weight popularity
+  ]
+  
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = true]
+  set topk map [[end2] of ?] topk
+
+  report topk
+end
+
+to-report topk-peer-similarity
+  update-rank-links
+  
+  ;get list of all peers
+  let peers []
+  ask my-out-connect-links with [[document?] of end2 = true] [
+    ask end2 [
+      set peers (turtle-set peers [end1] of my-in-connect-links)
+    ]
+  ]
+  
+  ;determine similarity of peers
+  let my-docs (turtle-set [end2] of my-out-connect-links) with [document?]
+  ask other turtle-set peers [
+    let peer-docs turtle-set [end2] of my-out-connect-links with [[document?] of end2 = true] 
+    let union turtle-set remove-duplicates (sentence my-docs peer-docs)
+    let intersection (turtle-set my-docs) with [member? self peer-docs]
+    
+
+    let similarity count intersection / count union
+    foreach [self] of peer-docs [
+      ask rank-link ([who] of myself) ([who] of ?) [
+        if weight < similarity [set weight similarity]
+      ]
+    ]
+  ]
+ 
+  ;rank documents based on the peers that like them, document rank is the peer who likes them with the highest similarity
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = true]
+  ;show map [[weight] of ?] topk
+  set topk map [[end2] of ?] topk
+
+  report topk
+end
+
+to-report peer-distance
+  update-rank-links
+  
+  let current-nodes turtle-set self
+  let active-turtle self
+  let next-nodes no-turtles
+  let n 1
+  
+  repeat (count other turtles with [not document?])[
+    set next-nodes no-turtles 
+    
+    ask current-nodes [
+      ;Set rank of documents
+      ask (turtle-set [end2] of my-out-connect-links) with [document?][
+      
+        ask rank-link ([who] of active-turtle) ([who] of self) [
+          if (weight = 0) or  (weight > n) [set weight n]
+        ]
+      ]
+      
+      ;add peers to next iteration
+      ask myself [
+        set next-nodes  other (turtle-set next-nodes (turtle-set [end2] of my-out-connect-links) with [not document?])
+      ]
+    ]
+    
+    set current-nodes next-nodes
+    set n n + 1
+  ]
+  
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = true]
+  set topk map [[end2] of ?] topk
+  
+  report topk
+end
+
+to-report follow-similarity
+  update-rank-links
+  
+  let active-peer self
+  ;Who do I follow?
+  let my-follows (turtle-set [end2] of my-out-connect-links) with [document? = false]
+  
+  ;get list of all peers who follow the same person you follow
+  let peers turtle-set nobody
+  ask my-follows [
+    set peers (turtle-set peers [end1] of my-in-connect-links)
+  ]
+  set peers peers with [self != myself]
+ 
+  ask other turtle-set peers [
+    let peer-follows turtle-set [end2] of my-out-connect-links with [[document?] of end2 = false] 
+    let union turtle-set remove-duplicates (sentence my-follows peer-follows)
+    let intersection (turtle-set my-follows) with [member? self peer-follows]
+    let similarity count intersection / count union
+    
+    ;Rank files that the peer likes
+    ask my-out-connect-links with [[document?] of end2 = true][
+      ask rank-link ([who] of active-peer) ([who] of end2) [
+        if weight < similarity [
+          set weight similarity
+        ]
+      ]
+    ]
+  ]
+  
+  
+  ;rank documents based on the peers that like them, document rank is the peer who likes them with the highest similarity
+  let topk reverse sort-on [weight] my-out-rank-links with [[document?] of end2 = true]
+ 
+  ;show map [[weight] of ?] topk
+  set topk map [[end2] of ?] topk
+
+  report topk
+end
+
+

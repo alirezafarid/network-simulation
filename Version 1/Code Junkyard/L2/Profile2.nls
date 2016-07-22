@@ -1,0 +1,44 @@
+;PROFILE 2
+;top-k doc pop
+
+breed [profiles2 profile2]
+
+to-report profiles2-rank
+  let rank-list topk-doc-popularity
+  let remembered-turtles ([end2] of my-out-memory-links)
+  set rank-list filter [not member? ? remembered-turtles] rank-list
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report profiles2-payoff 
+  report score-new
+end
+
+to-report profiles2-like
+  let like-list like-tags-in-topk
+  draw-connections like-list
+  report like-list
+end
+
+to-report profiles2-follow
+  let candidates topm-from-liked
+  let remembered-turtles ([end2] of my-out-memory-links)
+  set candidates filter [not member? ? remembered-turtles] candidates
+  set candidates smart-sublist candidates max-m
+  draw-memories candidates
+  
+  let follow-list follow-everyone candidates
+  draw-connections follow-list
+  
+  report follow-list
+end
+
+to-report profiles2-publish
+  report nobody
+end
+
+to-report profiles2-leave? 
+  report 0
+end
