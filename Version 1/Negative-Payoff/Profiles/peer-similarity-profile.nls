@@ -22,7 +22,12 @@ to-report peer-similarity-profiles-like
 end
 
 to-report peer-similarity-profiles-follow  
-  report []
+  let like-list like-tags-in-topk
+  let peers []
+  ask connect-links with [ member? end2 like-list = true and end1 != myself]
+  [ set peers lput end1 peers]
+  set peers remove-duplicates peers
+  report  follow-peers peers
 end
 
 to-report peer-similarity-profiles-publish

@@ -10,62 +10,27 @@ __includes [
   ;"Negative-Payoff/profiles/stock-document-popularity-profile.nls"
   ;"Negative-Payoff/profiles/stock-viral-profile.nls"
 
-  ;Experiment 1 data
-;  "Negative-Payoff/experiment1.nls"
-;  "Negative-Payoff/profiles/peer-similarity-profile.nls"
-;  "Negative-Payoff/profiles/complete-random-profile.nls"
-   ;End of experiment 1 data
-
-;  Experiment 2 data
-;  "Negative-Payoff/experiment2.nls"
-;  "Negative-Payoff/profiles/peer-follow-profile.nls"
-;  "Negative-Payoff/profiles/peer-distance-profile.nls"
-;  End of experiment 2 data
 
 
-;  Experiment 4 data
-;  "Negative-Payoff/experiment4.nls"
-;  "Negative-Payoff/profiles/document-popularity-profile.nls"
-;  "Negative-Payoff/profiles/complete-random-profile.nls"
-;  End of experiment 4 data
+;  Experiments
 
-  ;Experiment 5 data
-;    "Negative-Payoff/experiment5.nls"
-;  "Negative-Payoff/profiles/peer-popularity-profile.nls"
-;  "Negative-Payoff/profiles/peer-similarity-profile.nls"
- ; End of experiment 5 data
+"Negative-Payoff/experiments.nls"
+  "Negative-Payoff/profiles/peer-popularity-profile.nls"
+  "Negative-Payoff/profiles/peer-popularity-producer-profile.nls"
 
+  "Negative-Payoff/profiles/peer-follow-profile.nls"
+  "Negative-Payoff/profiles/peer-follow-producer-profile.nls"
 
-;  Experiment 6 to 8 data
-;  "Negative-Payoff/experiment6.nls"
+  "Negative-Payoff/profiles/peer-similarity-profile.nls"
+  "Negative-Payoff/profiles/peer-similarity-producer-profile.nls"
 
-;  "Negative-Payoff/profiles/peer-popularity-profile.nls"
-;  "Negative-Payoff/profiles/peer-popularity-producer-profile.nls"
-;
-;
-;  "Negative-Payoff/profiles/peer-follow-profile.nls"
-;  "Negative-Payoff/profiles/peer-follow-producer-profile.nls"
-;
-;
-;  "Negative-Payoff/profiles/peer-similarity-profile.nls"
-;  "Negative-Payoff/profiles/peer-similarity-producer-profile.nls"
-;
-;  "Negative-Payoff/profiles/complete-random-profile.nls"
-;  "Negative-Payoff/profiles/complete-random-producer-profile.nls"
-;
-;  "Negative-Payoff/profiles/document-popularity-profile.nls"
-;  "Negative-Payoff/profiles/document-popularity-producer-profile.nls"
-;  End of experiment 6 data
+  "Negative-Payoff/profiles/complete-random-profile.nls"
+  "Negative-Payoff/profiles/complete-random-producer-profile.nls"
 
+  "Negative-Payoff/profiles/document-popularity-profile.nls"
+  "Negative-Payoff/profiles/document-popularity-producer-profile.nls"
 
-;  Experiment 9
-"Negative-Payoff/experiment9.nls"
-"Negative-Payoff/profiles/document-popularity-profile.nls"
-"Negative-Payoff/profiles/peer-similarity-profile.nls"
-"Negative-Payoff/profiles/peer-popularity-profile.nls"
-
-;  End of experiment 9
-
+;  End of Experiments
 
   "Negative-Payoff/strategies/candidates.nls"
   "Negative-Payoff/strategies/follow.nls"
@@ -119,7 +84,7 @@ to simulator-setup
   clear-all
 
   set number-of-agents  60
-  set number-of-iterations 110
+  set number-of-iterations 80
   set total-number-of-turns 0
 
   reset-ticks
@@ -345,8 +310,8 @@ true
 true
 "" ""
 PENS
-"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-popularity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
-"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-popularity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag1" 1.0 1 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag0" 1.0 1 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = complete-random-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
 
 PLOT
 717
