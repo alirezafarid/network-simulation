@@ -1,0 +1,52 @@
+\begin{thebibliography}{1}
+
+\bibitem{cohen2003incentives}
+Bram Cohen.
+\newblock Incentives build robustness in bittorrent.
+\newblock In {\em Workshop on Economics of Peer-to-Peer systems}, volume~6,
+  pages 68--72, 2003.
+
+\bibitem{antoniadis2009self}
+Panayotis Antoniadis and Benedicte Le~Grand.
+\newblock Self-organised virtual communities: bridging the gap between
+  web-based communities and p2p systems.
+\newblock {\em International Journal of Web Based Communities}, 5(2):179--194,
+  2009.
+
+\bibitem{macbeth2015self}
+Sam Macbeth and Jeremy~V Pitt.
+\newblock Self-organising management of user-generated data and knowledge.
+\newblock {\em The Knowledge Engineering Review}, 30(03):237--264, 2015.
+
+\bibitem{bobadilla2013recommender}
+Jes{\'u}s Bobadilla, Fernando Ortega, Antonio Hernando, and Abraham
+  Guti{\'e}rrez.
+\newblock Recommender systems survey.
+\newblock {\em Knowledge-Based Systems}, 46:109--132, 2013.
+
+\bibitem{vidal2005protocol}
+Jos{\'e}~M Vidal.
+\newblock A protocol for a distributed recommender system.
+\newblock In {\em Trusting agents for trusting electronic societies}, pages
+  200--217. Springer, 2005.
+
+\bibitem{kautz1997referral}
+Henry Kautz, Bart Selman, and Mehul Shah.
+\newblock Referral web: combining social networks and collaborative filtering.
+\newblock {\em Communications of the ACM}, 40(3):63--65, 1997.
+
+\bibitem{rezaei2010distributed}
+Golriz Rezaei, Jens Pfau, and Michael Kirley.
+\newblock Distributed advice-seeking on an evolving social network.
+\newblock In {\em Web Intelligence and Intelligent Agent Technology (WI-IAT),
+  2010 IEEE/WIC/ACM International Conference on}, volume~2, pages 24--31. IEEE,
+  2010.
+
+\bibitem{wang2004trust}
+Yao Wang and Julita Vassileva.
+\newblock Trust-based community formation in peer-to-peer file sharing
+  networks.
+\newblock In {\em Proceedings of the 2004 IEEE/WIC/ACM International Conference
+  on Web Intelligence}, pages 341--348. IEEE Computer Society, 2004.
+
+\end{thebibliography}

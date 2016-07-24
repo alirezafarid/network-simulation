@@ -12,7 +12,7 @@ to-report peer-similarity-profiles-payoff
   let reward 1.5
   let punishment  0.5
   let turncost  0
-  report score-new-with-penalty-turncost reward punishment turncost
+  report score-new-with-penalty reward punishment
 end
 
 to-report peer-similarity-profiles-like
