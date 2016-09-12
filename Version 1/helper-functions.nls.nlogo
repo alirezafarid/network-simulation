@@ -310,8 +310,8 @@ true
 true
 "" ""
 PENS
-"consumer tag1" 1.0 1 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
-"consumer tag0" 1.0 1 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = complete-random-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-popularity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
 
 PLOT
 717
