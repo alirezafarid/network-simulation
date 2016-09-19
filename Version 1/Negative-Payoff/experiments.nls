@@ -73,8 +73,7 @@ to setup
   
   
 ;----------------------------------------------------------------------------------------------------------------------------------
-;Comparison of the five strategies, random, peer-popularity, peer-follow-similarity ,and (document-popularity and peer-like-similarity, experimented in EXP 6 and 7) for 
-; consumers and producers with major and minor tastes, when each of the strategies were experimeted seperately. 
+
 
 ;random strategy for consumers and producers, with major and minor taste
   
