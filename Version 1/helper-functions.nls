@@ -28,6 +28,7 @@ to documents-setup [tag-count tag-list]
   turtles-layout
   set document? true
   set active? false
+  set num-likes 0
   set color grey
   set tags n-of tag-count tag-list
 end

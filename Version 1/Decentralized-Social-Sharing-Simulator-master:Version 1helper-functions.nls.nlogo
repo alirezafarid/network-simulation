@@ -1,4 +1,4 @@
-extensions [CSV profiler]
+extensions [profiler]
 
 ;; Load External Files
 __includes [
@@ -14,8 +14,7 @@ __includes [
 
 ;  Experiments
 
-  "Negative-Payoff/plot.nls"
-  "Negative-Payoff/experiments.nls"
+"Negative-Payoff/experiments.nls"
   "Negative-Payoff/profiles/peer-popularity-profile.nls"
   "Negative-Payoff/profiles/peer-popularity-producer-profile.nls"
 
@@ -49,7 +48,6 @@ globals[
   number-of-agents
   number-of-iterations
   total-number-of-turns
-  iterationCounter
 ]
 
 ;; Assign each turtle a property
@@ -64,7 +62,6 @@ turtles-own[
   last-turn                 ;;The last turn this peer was the user
   children                  ;;Get the children of this file
 
-  num-likes
   iteration-num             ;;Keeps track of current iteration number in experiment.
   iteration-turn-list       ;;List for checking whether this agent has acted in each iteration.
 
@@ -86,11 +83,7 @@ to simulator-setup
   ;;Clear the values from the last simulation
   clear-all
 
-  ;file-open "/Users/alirezafaridamin/Desktop/plot.csv"
-  file-open "/Users/alirezafaridamin/Desktop/histogram.csv"
-  file-print "XXX"
-  set iterationCounter 0
-  set number-of-agents  30
+  set number-of-agents  60
   set number-of-iterations 80
   set total-number-of-turns 0
 
@@ -98,6 +91,7 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
+
   set user nobody
   set inactive-color black
   set-default-shape turtles "circle"
@@ -156,23 +150,8 @@ to go
 ;    update-variables
   ]
 
-if( number-of-iterations * number-of-agents >= total-number-of-turns )
-[tick
-
-  ;drawDiagram
-  drawHistogram
- if ( number-of-iterations * number-of-agents = total-number-of-turns )
- [
-    set total-number-of-turns total-number-of-turns + 1
-    file-close
- ]
-
-]
-
-
-
-
-
+if( number-of-iterations * number-of-agents > total-number-of-turns )
+[tick]
 
 end
 
@@ -190,9 +169,9 @@ to act
 
 end
 
+
 to update-variables
   set turns turns + 1
-  set num-likes num-likes + 1
   set score score + turn-payoff
   set turn-payoff-list lput turn-payoff turn-payoff-list
   set last-turn ticks
@@ -249,7 +228,7 @@ SWITCH
 168
 random-seed?
 random-seed?
-1
+0
 1
 -1000
 
@@ -259,7 +238,7 @@ INPUTBOX
 212
 125
 the-random-seed
-100
+50
 1
 0
 Number
@@ -331,8 +310,8 @@ true
 true
 "" ""
 PENS
-"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
-"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-popularity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
 
 PLOT
 717
@@ -881,18 +860,6 @@ go</setup>
     </enumeratedValueSet>
     <enumeratedValueSet variable="random-seed?">
       <value value="false"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="experimentTest" repetitions="2" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="4000"/>
-    <metric>count turtles</metric>
-    <enumeratedValueSet variable="random-seed?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="the-random-seed">
-      <value value="50"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
