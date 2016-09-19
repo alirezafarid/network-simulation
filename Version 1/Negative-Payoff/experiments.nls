@@ -73,7 +73,8 @@ to setup
   
   
 ;----------------------------------------------------------------------------------------------------------------------------------
-
+;Comparison of the five strategies, random, peer-popularity, peer-follow-similarity ,and (document-popularity and peer-like-similarity, experimented in EXP 6 and 7) for 
+; consumers and producers with major and minor tastes, when each of the strategies were experimeted seperately. 
 
 ;random strategy for consumers and producers, with major and minor taste
   
@@ -128,13 +129,13 @@ to setup
 ;  create-peer-similarity-profiles 18 [profiles-setup k m 1 [0] red]
 
 ;----------------------------------------------------------------------------------------------------------------------------------
-;setting 1: document-popularity strategy for major taste consumers(70%), random strategy for minor taste consumers(30%)
-;setting 2: Random strategy for major taste consumers(70%), document-popularity strategy for minor taste consumers(30%)
+;setting 1: document-popularity strategy for major taste consumers(70%), peer-like-similarity strategy for minor taste consumers(30%)
+;setting 2: peer-like-similarity strategy for major taste consumers(70%), document-popularity strategy for minor taste consumers(30%)
 
 ;setting1  
 
 ;    create-document-popularity-profiles 54 [profiles-setup k m 1 [1] green]  
-;    create-complete-random-profiles  6 [profiles-setup k m 1 [0] blue] 
+;    create-peer-similarity-profiles  6 [profiles-setup k m 1 [0] blue] 
     
 ;setting2
          

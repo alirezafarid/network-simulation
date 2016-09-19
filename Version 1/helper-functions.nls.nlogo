@@ -87,7 +87,7 @@ to simulator-setup
   clear-all
 
   ;file-open "/Users/alirezafaridamin/Desktop/plot.csv"
-  file-open "/Users/alirezafaridamin/Desktop/histogram.csv"
+  file-open "/Users/alirezafaridamin/Desktop/histogramV.csv"
   file-print "XXX"
   set iterationCounter 0
   set number-of-agents  30
