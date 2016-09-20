@@ -86,9 +86,9 @@ to simulator-setup
   ;;Clear the values from the last simulation
   clear-all
 
-  ;file-open "/Users/alirezafaridamin/Desktop/plot.csv"
-  file-open "/Users/alirezafaridamin/Desktop/histogramV.csv"
-  file-print "XXX"
+  file-open "/Users/alirezafaridamin/Desktop/plot.csv"
+  ;file-open "/Users/alirezafaridamin/Desktop/histogramV.csv"
+  file-print "ZZZ"
   set iterationCounter 0
   set number-of-agents  30
   set number-of-iterations 80
@@ -159,8 +159,8 @@ to go
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
 [tick
 
-  ;drawDiagram
-  drawHistogram
+  drawDiagram
+  ;drawHistogram
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
     set total-number-of-turns total-number-of-turns + 1
