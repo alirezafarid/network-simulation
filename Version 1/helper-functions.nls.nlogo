@@ -15,7 +15,10 @@ __includes [
 ;  Experiments
 
   "Negative-Payoff/plot.nls"
-  "Negative-Payoff/experiments.nls"
+  "Negative-Payoff/Experiments/Part1-Uniform-MajorMinor/Peer-like-similarity/Peer-like-similarity.nls";
+  ;"Negative-Payoff/experiments.nls"
+
+
   "Negative-Payoff/profiles/peer-popularity-profile.nls"
   "Negative-Payoff/profiles/peer-popularity-producer-profile.nls"
 
@@ -85,12 +88,10 @@ turtles-own[
 to simulator-setup
   ;;Clear the values from the last simulation
   clear-all
-
-  file-open "/Users/alirezafaridamin/Desktop/plot.csv"
   ;file-open "/Users/alirezafaridamin/Desktop/histogramV.csv"
-  file-print "ZZZ"
+  ;file-print date-and-time
   set iterationCounter 0
-  set number-of-agents  30
+  set number-of-agents  60
   set number-of-iterations 80
   set total-number-of-turns 0
 
@@ -98,6 +99,9 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
+  file-open (word "Negative-Payoff/Experiments/Part1-Uniform-MajorMinor/Peer-like-similarity/MajorMinor Results"  the-random-seed  ".csv")
+  file-print the-random-seed
+  file-print "Major Taste , Minor Taste"
   set user nobody
   set inactive-color black
   set-default-shape turtles "circle"
@@ -159,7 +163,7 @@ to go
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
 [tick
 
-  drawDiagram
+   drawDiagram
   ;drawHistogram
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
@@ -259,7 +263,7 @@ INPUTBOX
 212
 125
 the-random-seed
-100
+800
 1
 0
 Number
@@ -883,17 +887,12 @@ go</setup>
       <value value="false"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="experimentTest" repetitions="2" runMetricsEveryStep="true">
+  <experiment name="RunMultipleTimes" repetitions="1" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="4000"/>
+    <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
-    <enumeratedValueSet variable="random-seed?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="the-random-seed">
-      <value value="50"/>
-    </enumeratedValueSet>
+    <steppedValueSet variable="the-random-seed" first="100" step="100" last="1000"/>
   </experiment>
 </experiments>
 @#$#@#$#@
