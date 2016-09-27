@@ -23,14 +23,13 @@ to setup
 ;Setting 1 (70% consumers and 30% producers) 
 
 
-;create-document-popularity-profiles 48  [profiles-setup k m 1 [1] red]   
-;create-document-popularity-producer-profiles 12 [profiles-setup k m 1 [0] yellow]
+create-document-popularity-profiles 48  [profiles-setup k m 1 [1] red]   
+create-document-popularity-producer-profiles 12 [profiles-setup k m 1 [0] yellow]
 
 ;Setting 2 (30% consumers and 70% producers)
 
-create-document-popularity-producer-profiles 48 [profiles-setup k m 1 [1] yellow]
-create-document-popularity-profiles 12  [profiles-setup k m 1 [0] red]   
-
+;create-document-popularity-profiles 12  [profiles-setup k m 1 [1] red]   
+;create-document-popularity-producer-profiles 48 [profiles-setup k m 1 [0] yellow]
   
       
   my-layout    

@@ -15,7 +15,7 @@ __includes [
 ;  Experiments
 
   "Negative-Payoff/plot.nls"
-  "Negative-Payoff/Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-PeerLikeSim.nls";
+  "Negative-Payoff/Experiments/Part3-Producer/DocPopProducerConsumer.nls";
 
 
 
@@ -102,7 +102,7 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
-  file-open (word "Negative-Payoff/Experiments/Part2-Mix/PeerPop-PeerLikeSim/Setting1 Results "  the-random-seed  ".csv")
+  file-open (word "Negative-Payoff/Experiments/Part3-Producer/Setting2 Results "  the-random-seed  ".csv")
   file-print the-random-seed
   file-print "Taste 1 , Taste 0"
   set user nobody
