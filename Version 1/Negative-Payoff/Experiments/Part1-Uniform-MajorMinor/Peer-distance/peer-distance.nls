@@ -11,7 +11,7 @@ to setup
   create-documents 200 [documents-setup 1 [0]]
   create-documents 200 [documents-setup 1 [1]]
   
-;----------------------------------------------------------------------------------------------------------------------------------
+
 ;setting 1: peer-distance strategy for uniform consumers (50% of taste 1 - 50% of taste 0)
 ;setting 2: peer-distance strategy for major-minor consumers with (70%-30%) 
 
@@ -22,9 +22,9 @@ to setup
   
 ;setting 2:
       
-;  create-peer-distance-profiles 42 [profiles-setup k m 1 [1] green]
-;  create-peer-distance-profiles 18 [profiles-setup k m 1 [0] red]
-----------------------------------------------------------------------------------------------------------------------------------
+  create-peer-distance-profiles 42 [profiles-setup k m 1 [1] green]
+  create-peer-distance-profiles 18 [profiles-setup k m 1 [0] red]
+
 
   my-layout    
 end

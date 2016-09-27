@@ -16,8 +16,8 @@ to setup
 
 ;setting 1:   
  
-  create-peer-similarity-profiles 30 [profiles-setup k m 1 [1] green]
-  create-peer-similarity-profiles 30 [profiles-setup k m 1 [0] red]
+;  create-peer-similarity-profiles 30 [profiles-setup k m 1 [1] green]
+;  create-peer-similarity-profiles 30 [profiles-setup k m 1 [0] red]
   
 ;setting 2:
    

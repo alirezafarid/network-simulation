@@ -15,8 +15,11 @@ __includes [
 ;  Experiments
 
   "Negative-Payoff/plot.nls"
-  "Negative-Payoff/Experiments/Part1-Uniform-MajorMinor/Peer-like-similarity/Peer-like-similarity.nls";
-  ;"Negative-Payoff/experiments.nls"
+  "Negative-Payoff/Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-PeerLikeSim.nls";
+
+
+
+  "Negative-Payoff/profiles/peer-distance-profile.nls"
 
 
   "Negative-Payoff/profiles/peer-popularity-profile.nls"
@@ -99,9 +102,9 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
-  file-open (word "Negative-Payoff/Experiments/Part1-Uniform-MajorMinor/Peer-like-similarity/MajorMinor Results"  the-random-seed  ".csv")
+  file-open (word "Negative-Payoff/Experiments/Part2-Mix/PeerPop-PeerLikeSim/Setting1 Results "  the-random-seed  ".csv")
   file-print the-random-seed
-  file-print "Major Taste , Minor Taste"
+  file-print "Taste 1 , Taste 0"
   set user nobody
   set inactive-color black
   set-default-shape turtles "circle"
@@ -242,7 +245,7 @@ GRAPHICS-WINDOW
 25
 1
 1
-1
+0
 ticks
 12.0
 
@@ -253,7 +256,7 @@ SWITCH
 168
 random-seed?
 random-seed?
-1
+0
 1
 -1000
 
@@ -263,7 +266,7 @@ INPUTBOX
 212
 125
 the-random-seed
-800
+100
 1
 0
 Number
@@ -320,10 +323,10 @@ NIL
 1
 
 PLOT
-731
-68
-1314
-305
+669
+10
+1252
+247
 payoff
 Iteration number
 Average payoff
@@ -335,26 +338,8 @@ true
 true
 "" ""
 PENS
-"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
-"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = document-popularity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
-
-PLOT
-717
-330
-1156
-482
-Score Distrib
-Nodes
-# Peers
-0.0
-100.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 1 -16777216 true "" "histogram [score] of turtles with [not document? and active?]"
+"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
+"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
 
 BUTTON
 66
