@@ -1,6 +1,6 @@
 # network-simulation
 
-The code of each experiment along with it's generated data are in a separate folder named as the title of that experiment in negative-payoff/Experiments directory. 
+The code of each experiment along with it's generated data are in a separate folder named as the title of that experiment in negative-payoff/Experiments directory.(network-simulation/Version 1/Negative-Payoff/Experiments/)
 
 To Run a particular Experiment:
 
