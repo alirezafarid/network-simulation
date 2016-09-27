@@ -266,7 +266,7 @@ INPUTBOX
 212
 125
 the-random-seed
-100
+800
 1
 0
 Number

@@ -5,8 +5,8 @@ to drawDiagram
     
     if (iterationCounter != total-number-of-turns / number-of-agents)
     [ 
-      file-type mean [score] of turtles with  [not document? and  breed = peer-popularity-profiles and tags = [1]] file-type " , " 
-      file-type mean [score] of turtles with [not document? and  breed =  peer-similarity-profiles and tags = [0]] file-type "\n"
+      file-type mean [score] of turtles with  [not document? and  breed = peer-similarity-profiles and tags = [1]] file-type " , " 
+      file-type mean [score] of turtles with [not document? and  breed =  peer-popularity-profiles and tags = [0]] file-type "\n"
       set iterationCounter iterationCounter + 1
     ]
   ]      

@@ -16,15 +16,15 @@ to setup
 
 ;setting 1
  
-   create-peer-popularity-profiles 42 [profiles-setup k m 1 [1] green]
-   create-peer-similarity-profiles 18 [profiles-setup k m 1 [0] green]
+ ;  create-peer-popularity-profiles 42 [profiles-setup k m 1 [1] green]
+ ;  create-peer-similarity-profiles 18 [profiles-setup k m 1 [0] green]
 
 ; Peers with major and minor tastes (70% taste peer-sim 30%taste peer-pop)  
 
 ;setting 2
    
-;    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green]
-;    create-peer-popularity-profiles 18 [profiles-setup k m 1 [0] black]
+    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green]
+    create-peer-popularity-profiles 18 [profiles-setup k m 1 [0] black]
 
        
   my-layout    
