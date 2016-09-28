@@ -1,0 +1,37 @@
+;;SIMULATOR: VERSION 1
+
+to setup
+  simulator-setup
+  let t-list n-values 2 [?]
+  let t-count 2
+  let k 5
+  let m 5
+
+  create-documents 200 [documents-setup 1 [0]]
+  create-documents 200 [documents-setup 1 [1]]
+  
+
+;document-popularity strategy for consumers and producers, with major and minor taste (70%-30%)
+; Note
+ ;The difference between the producers and consumers is that:1.  producers publish new documents
+ ; in addition to consumers actions, which are like and follow. 2. the payoff of consumers and producers
+ ; are calculated differently. 
+ 
+ ;Producers collaborate by liking and following of other peers, and thus they act as a consumer for other producers
+
+
+;Setting 1 (70% consumers and 30% producers) 
+
+
+;create-document-popularity-profiles 48  [profiles-setup k m 1 [1] red]   
+;create-document-popularity-producer-profiles 12 [profiles-setup k m 1 [0] yellow]
+
+;Setting 2 (30% consumers and 70% producers)
+
+create-document-popularity-producer-profiles 48 [profiles-setup k m 1 [1] yellow]
+create-document-popularity-profiles 12  [profiles-setup k m 1 [0] red]   
+
+  
+      
+  my-layout    
+end

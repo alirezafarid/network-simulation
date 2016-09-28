@@ -1,0 +1,79 @@
+;;;;;;;;;;;;;;;;;;;;;;;
+;; PROFILE FUNCTIONS ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+to profiles-setup [k m tag-count tag-list colour]
+  turtles-layout ;Standard layout
+  set score 0
+  set turns 0
+  set max-k k
+  set max-m m
+  set document? false
+  set active? true
+  set tags n-of tag-count tag-list
+  set default-color colour
+  set children []
+  set turn-payoff-list []
+  
+  if active? [set color default-color]
+  
+  set iteration-num 0
+  set iteration-turn-list []     
+  while [length iteration-turn-list < number-of-iterations]
+  [set iteration-turn-list lput false iteration-turn-list]        
+     
+end
+
+to documents-setup [tag-count tag-list]
+  turtles-layout
+  set document? true
+  set active? false
+  set num-likes 0
+  set color grey
+  set tags n-of tag-count tag-list
+end
+
+;;;;;;;;;;;;;;;;;;;;;
+;; GENERAL UTILITY ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+;Only attempt to sublist if list is larger than sought length
+to-report smart-sublist [ls len]
+  if (length ls > len) [set ls sublist ls 0 len]
+  report ls
+end
+
+to-report shared-member [list1 list2]
+  if length filter [member? ? list1] list2 > 0 [
+    report true
+  ]
+  report false
+end
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LINK RELATED FUNCTIONS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Draws the like/follow connections
+to draw-connections [new-connections]
+  ;Create connect-links to new like and follow results
+  create-connect-links-to (turtle-set new-connections) with [not in-connect-link-neighbor? myself][
+     set timestamps (list ticks)
+     set color orange
+  ]
+end
+
+to draw-memories [new-memories]
+  ;Create memory-links to new topk and topm results
+  create-memory-links-to (turtle-set new-memories) with [not in-memory-link-neighbor? myself][
+     set timestamps (list ticks)
+     set color pink
+     set hidden? false
+     
+  ]
+  
+  ;Add timestamp to existing connecting links
+  ask my-out-memory-links with [member? end2 new-memories][
+     set timestamps lput ticks timestamps
+  ]
+end
+

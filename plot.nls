@@ -1,0 +1,33 @@
+;;SIMULATOR: VERSION 1
+to drawDiagram
+  
+  if (total-number-of-turns mod  number-of-agents = 0) [
+    
+    if (iterationCounter != total-number-of-turns / number-of-agents)
+    [ 
+      file-type mean [score] of turtles with  [not document? and  breed = document-popularity-producer-profiles and tags = [1]] file-type " , " 
+      file-type mean [score] of turtles with [not document? and  breed =  document-popularity-profiles and tags = [0]] file-type "\n"
+      set iterationCounter iterationCounter + 1
+    ]
+  ]      
+end
+
+
+to drawHistogram
+  
+ifelse   (number-of-iterations * number-of-agents * 1 / 3  = total-number-of-turns)
+  [ 
+    file-print "XXXXXX" 
+    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error1"]] ] 
+[ ifelse (number-of-iterations * number-of-agents * 2 / 3 = total-number-of-turns )
+     
+  [ file-print "XXXXX" 
+    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error2"]] ]
+     
+[ if ( number-of-iterations * number-of-agents   =  total-number-of-turns ) 
+  [ file-print "XXXXX" 
+    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error3"]]
+    ] 
+]]     
+end
+

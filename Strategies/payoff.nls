@@ -1,0 +1,139 @@
+;; SUM - Score is based off how many documents in the top-k a peer will like. +1 if they like the document, -1 otherwise
+to-report score-sum [active-turtle topk like-list]
+  let temp-score 0
+  foreach topk [
+    ifelse member? ? like-list [set temp-score temp-score + 1] [set temp-score temp-score - 1]
+  ]
+  report temp-score
+end
+
+;; NEW - Score is based off how many new documents a peer will like (if it already likes one, it will not count). +1 if they like a new document
+to-report score-new 
+  let temp-score 0
+  let remembered-turtles map [[end2] of ?] ([self] of my-out-memory-links with [last timestamps < ticks])
+  let remembered-documents (turtle-set remembered-turtles) with [document?]  
+  
+  foreach turn-ranked [
+    if (not member? ? remembered-documents) and (shared-member ([tags] of ?) ([tags] of user))[
+      foreach [tags] of ? [
+        if member? ? [tags] of self [set temp-score temp-score + 1] 
+      ] 
+    ] 
+  ]
+  
+  report temp-score
+end
+
+;; NEW WITH PENALTY
+to-report score-new-with-penalty [reward punishment]
+  let temp-score 0
+  let remembered-turtles map [[end2] of ?] ([self] of my-out-memory-links with [last timestamps < ticks]) ;links created before this turn
+  let remembered-documents (turtle-set remembered-turtles) with [document?]  
+  
+  
+  foreach turn-ranked [
+    ifelse (not member? ? remembered-documents) and (shared-member ([tags] of ?) ([tags] of user))
+      [set temp-score temp-score + reward]
+      [set temp-score temp-score - punishment]
+      
+
+  ]
+  
+  report temp-score
+end
+
+;; NEW WITH PENALTY AND TURN COST
+to-report score-new-with-penalty-turncost [reward punishment turncost]
+  let temp-score turncost
+  let remembered-turtles map [[end2] of ?] ([self] of my-out-memory-links with [first timestamps < ticks]) ;links created before this turn
+  let remembered-documents (turtle-set remembered-turtles) with [document?]  
+  
+  foreach turn-ranked [
+    ifelse (not member? ? remembered-documents) and (shared-member ([tags] of ?) ([tags] of user))
+      [set temp-score temp-score + reward]
+      [set temp-score temp-score - punishment]
+  ]
+  
+  report temp-score
+end
+
+;; Producer payoff 
+to-report score-producer-stock 
+  let document-list [self] of turtles with [document?] 
+  let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list 
+  let temp-score 0
+  
+  set shared-tags-documents children
+  ask turtle-set shared-tags-documents [
+    ask my-in-memory-links [
+
+       ;find all the times the file has been in someones topk since last turn
+       set temp-score temp-score +  length filter [? > [last-turn] of user] timestamps
+
+
+     ] 
+  ]
+  
+  report temp-score
+end
+
+
+
+
+
+;; Attacker stock
+to-report score-attacker-stock [reward]
+  let document-list [self] of turtles with [document?] 
+  let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list 
+  let temp-score 0
+  
+  set shared-tags-documents children
+  ask turtle-set shared-tags-documents [
+    ask my-in-memory-links [
+
+       ;find all the times the file has been in someones topk since last turn
+       set temp-score temp-score + reward * length filter [? > [last-turn] of user] timestamps
+
+
+     ] 
+  ]
+  
+  report temp-score
+end
+
+;; Attacker stock
+to-report score-attacker-with-turn-cost [reward turncost]
+  let document-list [self] of turtles with [document?] 
+  let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list 
+  let temp-score turncost
+  
+  
+  ask turtle-set shared-tags-documents [
+    ask my-in-memory-links [
+
+       ;find all the times the file has been in someones topk since last turn
+       set temp-score temp-score + reward * length filter [? > [last-turn] of user] timestamps
+
+
+     ] 
+  ]
+  
+  report temp-score
+end
+
+;; Attacker stock
+to-report score-viral-attacker-with-turn-cost [reward turncost]
+  let document-list [self] of turtles with [document?] 
+  let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list 
+  let temp-score turncost
+  
+  
+  ask turtle-set shared-tags-documents [
+    ask my-in-memory-links [
+       ;find all the times the file has been in someones topk since last turn 
+       if first timestamps > [last-turn] of user [set temp-score temp-score + reward]
+     ] 
+  ]
+  
+  report temp-score
+end

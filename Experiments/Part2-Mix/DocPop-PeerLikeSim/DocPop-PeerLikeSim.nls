@@ -1,0 +1,29 @@
+;;SIMULATOR: VERSION 1
+
+to setup
+  simulator-setup
+  let t-list n-values 2 [?]
+  let t-count 2
+  let k 5
+  let m 5
+
+  create-documents 200 [documents-setup 1 [0]]
+  create-documents 200 [documents-setup 1 [1]]
+  
+;----------------------------------------------------------------------------------------------------------------------------------
+;setting 1: document-popularity strategy for major taste consumers(70%), peer-like-similarity strategy for minor taste consumers(30%)
+;setting 2: peer-like-similarity strategy for major taste consumers(70%), document-popularity strategy for minor taste consumers(30%)
+
+;setting1  
+
+ ;   create-document-popularity-profiles 54 [profiles-setup k m 1 [1] green]  
+ ;   create-peer-similarity-profiles  6 [profiles-setup k m 1 [0] blue] 
+    
+;setting2
+         
+    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green]
+    create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green]
+
+;----------------------------------------------------------------------------------------------------------------------------------
+  my-layout    
+end
