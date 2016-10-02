@@ -5,6 +5,7 @@
 to profiles-setup [k m tag-count tag-list colour]
   turtles-layout ;Standard layout
   set score 0
+  set point 0
   set turns 0
   set max-k k
   set max-m m
@@ -72,8 +73,8 @@ to draw-memories [new-memories]
   ]
   
   ;Add timestamp to existing connecting links
-  ask my-out-memory-links with [member? end2 new-memories][
-     set timestamps lput ticks timestamps
-  ]
+ ; ask my-out-memory-links with [member? end2 new-memories][
+  ;   set timestamps lput ticks timestamps
+  ;]
 end
 

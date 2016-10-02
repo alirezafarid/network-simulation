@@ -8,12 +8,6 @@ to-report document-popularity-producer-profiles-rank
   report rank-list
 end
 
-to-report document-popularity-producer-profiles-payoff 
-  let reward 1.5
-  let punishment 0.5
-  let turncost 0
-  report  score-producer-stock 
-end
 
 to-report document-popularity-producer-profiles-like
   let like-list like-tags-in-topk
@@ -31,10 +25,19 @@ to-report document-popularity-producer-profiles-follow
   report  follow-peers peers
 end
 
+
+to-report document-popularity-producer-profiles-payoff 
+  let reward 1.5
+  let punishment 0.5
+  let turncost 0
+  report  score-producer 
+end
+
+
 to-report document-popularity-producer-profiles-publish
- ifelse (length children <= 5 ) 
-  [report publish-random]
-  [report [] ]
+ ;ifelse (length children <= 5 ) 
+ ; [report publish-random]
+  report []
 end
 
 to-report document-popularity-producer-profiles-leave? 

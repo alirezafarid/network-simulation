@@ -69,6 +69,25 @@ to-report score-producer-stock
 
        ;find all the times the file has been in someones topk since last turn
        set temp-score temp-score +  length filter [? > [last-turn] of user] timestamps
+ 
+     ] 
+  ]
+  
+  report temp-score
+end
+
+to-report score-producer
+  let document-list [self] of turtles with [document?] 
+  
+  let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list   
+  let temp-score 0
+  
+  ;set shared-tags-documents children
+  ask turtle-set shared-tags-documents [
+    ask my-in-memory-links [
+
+       ;find all the times the file has been in someones topk since last turn
+       set temp-score temp-score + length  timestamps
 
 
      ] 
@@ -76,6 +95,9 @@ to-report score-producer-stock
   
   report temp-score
 end
+
+
+
 
 
 

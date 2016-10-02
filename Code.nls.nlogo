@@ -8,8 +8,8 @@ __includes [
   "test-code.nls"
 
   ; Experiment---------------------
-  ;"Experiments/Part3-Producer/DocPopProducerConsumer.nls";
-   "Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
+  "Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls";
+
 
   ;Data Generation---------------------
   "plot.nls"
@@ -65,6 +65,7 @@ turtles-own[
   active?                   ;;Is this agent currently active?
   tags                      ;;The taste(s) of this agent
   score                     ;;The score of this agent
+  point
   turns                     ;;The number of times this agent has acted
   max-k                     ;;The size of the top-k
   max-m                     ;;The size of the top-m (aka candidates list for who to follow)
@@ -134,7 +135,7 @@ to go
 
         if iteration-num + 1  < number-of-iterations
        [
-          ifelse    total-number-of-turns < iteration-num + 1 * number-of-agents [
+          ifelse    total-number-of-turns < ( iteration-num + 1 ) * number-of-agents [
 
                if item iteration-num iteration-turn-list = false [
 
@@ -192,6 +193,7 @@ to act
 
   run (word "set turn-payoff " [breed] of self "-payoff")
 
+
   run (word "set turn-liked " [breed] of self "-like")
 
   run (word "set turn-followed " [breed] of self "-follow")
@@ -203,6 +205,7 @@ end
 to update-variables
   set turns turns + 1
   set num-likes num-likes + 1
+  set point turn-payoff
   set score score + turn-payoff
   set turn-payoff-list lput turn-payoff turn-payoff-list
   set last-turn ticks
@@ -228,10 +231,10 @@ end
 GRAPHICS-WINDOW
 278
 9
-856
-608
-25
-25
+833
+630
+24
+26
 11.14
 1
 10
@@ -242,13 +245,13 @@ GRAPHICS-WINDOW
 0
 0
 1
--25
-25
--25
-25
+-24
+24
+-26
+26
 1
 1
-0
+1
 ticks
 12.0
 
@@ -269,7 +272,7 @@ INPUTBOX
 212
 125
 the-random-seed
-900
+800
 1
 0
 Number
@@ -432,7 +435,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Part4-DoNothing/Peer-similarity/Setting1-Result
+Experiments/Part3-Producer/DocPop/Settings2Result
 1
 0
 String
