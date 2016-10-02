@@ -2,25 +2,21 @@ extensions [CSV profiler]
 
 ;; Load External Files
 __includes [
+
   "helper-functions.nls"
-  "test-code.nls"
   "global-profiles.nls"
+  "test-code.nls"
 
-  ;"Lab2-Random-Vs-Popular-with-isolated-tastes.nls"
-  ;"profiles/stock-document-popularity-profile.nls"
-  ;"profiles/stock-viral-profile.nls"
+  ; Experiment---------------------
+  ;"Experiments/Part3-Producer/DocPopProducerConsumer.nls";
+   "Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
-
-
-;  Experiments
-
+  ;Data Generation---------------------
   "plot.nls"
-  "Experiments/Part3-Producer/DocPopProducerConsumer.nls";
 
-
+  ;Peer Profiles---------------------
 
   "profiles/peer-distance-profile.nls"
-
 
   "profiles/peer-popularity-profile.nls"
   "profiles/peer-popularity-producer-profile.nls"
@@ -29,15 +25,19 @@ __includes [
   "profiles/peer-follow-producer-profile.nls"
 
   "profiles/peer-similarity-profile.nls"
+  "profiles/peer-similarity-leech-profile.nls"
   "profiles/peer-similarity-producer-profile.nls"
 
   "profiles/complete-random-profile.nls"
   "profiles/complete-random-producer-profile.nls"
 
+
   "profiles/document-popularity-profile.nls"
+  "profiles/document-popularity-leech-profile.nls"
   "profiles/document-popularity-producer-profile.nls"
 
-;  End of Experiments
+
+   ;Strategies---------------------
 
   "strategies/candidates.nls"
   "strategies/follow.nls"
@@ -48,6 +48,7 @@ __includes [
   "strategies/rank.nls"
 
 ]
+
 
 globals[
   user
@@ -102,7 +103,7 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
-  file-open (word "Experiments/Part3-Producer/Setting2 Results "  the-random-seed  ".csv")
+  file-open (word  directory-of-results  the-random-seed  ".csv")
   file-print the-random-seed
   file-print "Taste 1 , Taste 0"
   set user nobody
@@ -168,6 +169,8 @@ if( number-of-iterations * number-of-agents >= total-number-of-turns )
 
    drawDiagram
   ;drawHistogram
+  ;drawNumofLikesPerDoc
+
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
     set total-number-of-turns total-number-of-turns + 1
@@ -223,13 +226,13 @@ to highlight-peer
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-227
-10
-696
-500
+278
+9
+856
+608
 25
 25
-9.0
+11.14
 1
 10
 1
@@ -266,7 +269,7 @@ INPUTBOX
 212
 125
 the-random-seed
-800
+900
 1
 0
 Number
@@ -322,29 +325,10 @@ NIL
 NIL
 1
 
-PLOT
-669
-10
-1252
-247
-payoff
-Iteration number
-Average payoff
-0.0
-15.0
-0.0
-15.0
-true
-true
-"" ""
-PENS
-"consumer tag1" 1.0 0 -2674135 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [1]] ]\n\n]\n[\nplot 0\n]"
-"consumer tag0" 1.0 0 -14070903 true "" "carefully[\nif (ticks > 0 and total-number-of-turns mod  number-of-agents = 0) [\nplot mean [score] of turtles with [not document? and  breed = peer-similarity-profiles and tags = [0]] ]\n\n]\n[\nplot 0\n]"
-
 BUTTON
-66
+68
 240
-193
+195
 273
 Hide Connections
 ask connect-links [set hidden? true]
@@ -359,10 +343,10 @@ NIL
 1
 
 BUTTON
-65
-291
-176
-324
+66
+284
+195
+317
 Hide Memories
 ask memory-links [set hidden? true]
 NIL
@@ -375,21 +359,11 @@ NIL
 NIL
 1
 
-TEXTBOX
-731
-33
-1150
-75
-ask turtle 0 [ask my-out-connect-links [set hidden? false]]
-11
-0.0
-1
-
 BUTTON
 65
-343
-154
-376
+332
+195
+365
 Hide ranks
 ask rank-links [set hidden? true]
 NIL
@@ -403,10 +377,10 @@ NIL
 1
 
 MONITOR
-756
-544
-912
-589
+919
+10
+1075
+55
 NIL
 total-number-of-turns
 17
@@ -414,10 +388,10 @@ total-number-of-turns
 11
 
 BUTTON
-61
-450
-199
-483
+64
+397
+193
+430
 performance test
 setup                  ;; set up the model\nprofiler:start         ;; start profiling\nrepeat 10 [ go ]       ;; run something you want to measure\nprofiler:stop          ;; stop profiling\nprint profiler:report  ;; view the results\nprofiler:reset         ;; clear the data
 NIL
@@ -429,6 +403,39 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+917
+136
+1238
+196
+breed-of-taste1
+document-popularity-profiles
+1
+0
+String
+
+INPUTBOX
+916
+208
+1239
+268
+breed-of-taste0
+peer-similarity-profiles
+1
+0
+String
+
+INPUTBOX
+870
+67
+1345
+127
+directory-of-results
+Experiments/Part4-DoNothing/Peer-similarity/Setting1-Result
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?

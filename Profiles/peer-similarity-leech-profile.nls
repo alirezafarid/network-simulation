@@ -1,0 +1,36 @@
+;top-k random
+breed [peer-similarity-leech-profiles peer-similarity-leech-profile]
+
+to-report peer-similarity-leech-profiles-rank
+  let rank-list topk-peer-similarity-with-memory
+  set rank-list smart-sublist rank-list max-k
+  draw-memories rank-list
+  report rank-list
+end
+
+to-report peer-similarity-leech-profiles-payoff 
+  let reward 1.5
+  let punishment  0.5
+  let turncost  0
+  report score-new-with-penalty-turncost reward punishment turncost
+end
+
+to-report peer-similarity-leech-profiles-like
+  
+  report []
+end
+
+to-report peer-similarity-leech-profiles-follow  
+
+  report []
+end
+
+to-report peer-similarity-leech-profiles-publish
+  let cost 2
+  report []
+end
+
+to-report peer-similarity-leech-profiles-leave? 
+  leave-join-network
+  report active?
+end

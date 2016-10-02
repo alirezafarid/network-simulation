@@ -16,8 +16,8 @@ to setup
 
 ;setting1  
 
- ;   create-document-popularity-profiles 54 [profiles-setup k m 1 [1] green]  
- ;   create-peer-similarity-profiles  6 [profiles-setup k m 1 [0] blue] 
+;    create-document-popularity-profiles 54 [profiles-setup k m 1 [1] green]  
+;    create-peer-similarity-profiles  6 [profiles-setup k m 1 [0] blue] 
     
 ;setting2
          
