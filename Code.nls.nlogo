@@ -8,7 +8,7 @@ __includes [
   "test-code.nls"
 
   ; Experiment---------------------
-  "Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls";
+  "Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-PeerLikeSim.nls";
 
 
   ;Data Generation---------------------
@@ -54,6 +54,8 @@ globals[
   user
   inactive-color
   number-of-agents
+  number-of-documents
+
   number-of-iterations
   total-number-of-turns
   iterationCounter
@@ -93,9 +95,8 @@ turtles-own[
 to simulator-setup
   ;;Clear the values from the last simulation
   clear-all
-  ;file-open "/Users/alirezafaridamin/Desktop/histogramV.csv"
-  ;file-print date-and-time
   set iterationCounter 0
+  set number-of-documents 400
   set number-of-agents  60
   set number-of-iterations 80
   set total-number-of-turns 0
@@ -104,9 +105,7 @@ to simulator-setup
 
   ;;Set the random seed if a value for it was provided
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
-  file-open (word  directory-of-results  the-random-seed  ".csv")
-  file-print the-random-seed
-  file-print "Taste 1 , Taste 0"
+
   set user nobody
   set inactive-color black
   set-default-shape turtles "circle"
@@ -168,14 +167,11 @@ to go
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
 [tick
 
-   drawDiagram
-  ;drawHistogram
-  ;drawNumofLikesPerDoc
+ Draw
 
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
     set total-number-of-turns total-number-of-turns + 1
-    file-close
  ]
 
 ]
@@ -227,6 +223,34 @@ to highlight-peer
   ask other turtles [set size 1]      ;;reset the original sizes and colors
   set size 2.5
 end
+
+to Draw
+
+if (total-number-of-turns mod  number-of-agents = 0 ) [
+
+    if (iterationCounter != total-number-of-turns / number-of-agents)
+    [
+
+          if (drawPayoff?)
+          [
+            drawPayoff
+
+          ]
+          if (drawNumofLikesPerTag?)
+          [
+            drawNumofLikesPerTag
+
+          ]
+          if (drawNumofLikesPerDoc?)
+          [
+             drawNumofLikesPerDoc
+
+          ]
+
+          set iterationCounter iterationCounter + 1
+    ]
+]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 278
@@ -272,7 +296,7 @@ INPUTBOX
 212
 125
 the-random-seed
-800
+80
 1
 0
 Number
@@ -408,37 +432,48 @@ NIL
 1
 
 INPUTBOX
-917
-136
-1238
-196
-breed-of-taste1
-document-popularity-profiles
-1
-0
-String
-
-INPUTBOX
-916
-208
-1239
-268
-breed-of-taste0
-peer-similarity-profiles
-1
-0
-String
-
-INPUTBOX
 870
 67
 1345
 127
 directory-of-results
-Experiments/Part3-Producer/DocPop/Settings2Result
+Experiments/histogram/
 1
 0
 String
+
+SWITCH
+910
+164
+1121
+197
+drawPayoff?
+drawPayoff?
+0
+1
+-1000
+
+SWITCH
+912
+213
+1121
+246
+drawNumofLikesPerTag?
+drawNumofLikesPerTag?
+0
+1
+-1000
+
+SWITCH
+912
+266
+1123
+299
+drawNumofLikesPerDoc?
+drawNumofLikesPerDoc?
+0
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

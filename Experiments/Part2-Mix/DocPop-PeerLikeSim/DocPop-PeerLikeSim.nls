@@ -16,13 +16,13 @@ to setup
 
 ;setting1  
 
-;    create-document-popularity-profiles 54 [profiles-setup k m 1 [1] green]  
-;    create-peer-similarity-profiles  6 [profiles-setup k m 1 [0] blue] 
+    create-document-popularity-profiles 48 [profiles-setup k m 1 [1] green]  
+    create-peer-similarity-profiles  12 [profiles-setup k m 1 [0] blue] 
     
 ;setting2
          
-    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green]
-    create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green]
+;    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green]
+;    create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green]
 
 ;----------------------------------------------------------------------------------------------------------------------------------
   my-layout    

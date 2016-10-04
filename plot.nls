@@ -1,49 +1,30 @@
 ;;SIMULATOR: VERSION 1
-to drawDiagram
-  
-  if (total-number-of-turns mod  number-of-agents = 0 ) [
-    
-    if (iterationCounter != total-number-of-turns / number-of-agents)
-    [ 
-      file-type mean [point] of turtles with  [not document? and  breed =  document-popularity-producer-profiles and tags = [1]] file-type " , " 
-      file-type   mean  [score] of turtles with [not document? and  breed =   document-popularity-profiles and tags = [0]] file-type "\n"
-      set iterationCounter iterationCounter + 1
-    ]
-  ]      
+
+to drawPayoff
+  file-open (word  directory-of-results "payoff.csv")  
+       file-type mean [point] of turtles with  [not document? and  tags = [1]] file-type " , " 
+       file-type   mean  [score] of turtles with [not document? and tags = [0]] file-type "\n " 
+  file-close       
+       
 end
 
+
+to drawNumofLikesPerTag
+  
+ file-open (word  directory-of-results "numOfTagLikes.csv")
+       file-type (count connect-links with [member? end2 documents = true  and  [tags] of end2 = [1]] / 200)  file-type " , " 
+       file-type (count connect-links with [member? end2 documents = true  and  [tags] of end2 = [0]] / 200)  file-type "\n "
+ file-close     
+           
+end
 
 to drawNumofLikesPerDoc
-  if (total-number-of-turns mod  number-of-agents = 0 ) [
-    
-    if (iterationCounter != total-number-of-turns / number-of-agents)
-    [ 
-
-     file-type (count connect-links with [member? end2 documents = true  and  [tags] of end2 = [1]] / 200)  file-type " , " 
-     file-type (count connect-links with [member? end2 documents = true  and  [tags] of end2 = [0]] / 200)  file-type "\n"
-     set iterationCounter iterationCounter + 1
-    ] 
-  ]    
-end
-
-;; Get the number of document likes
-
-
-to drawHistogram
   
-ifelse   (number-of-iterations * number-of-agents * 1 / 3  = total-number-of-turns)
-  [ 
-    file-print "XXXXXX" 
-    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error1"]] ] 
-[ ifelse (number-of-iterations * number-of-agents * 2 / 3 = total-number-of-turns )
-     
-  [ file-print "XXXXX" 
-    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error2"]] ]
-     
-[ if ( number-of-iterations * number-of-agents   =  total-number-of-turns ) 
-  [ file-print "XXXXX" 
-    foreach [who] of turtles with [document? = true] [carefully [  ask turtle ?1 [file-type [who] of self file-type ", "   file-print count my-in-links]][show "Error3"]]
-    ] 
-]]     
+       file-open (word  directory-of-results "numOflikesPerDoc-" (total-number-of-turns / 60)  ".csv")  
+           let turtleCount 0
+           repeat number-of-documents [ 
+            set  turtleCount turtleCount + 1 
+           ask turtle turtleCount [file-print count my-in-connect-links]]   
+       file-close    
 end
 
