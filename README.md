@@ -4,8 +4,8 @@ The code of each experiment along with it's generated data are in a separate fol
 
 To Run a particular Experiment:
 
-1. import the experiment source in line 11 of  Code tab.
-2.  Uncomment your intended setting in the experiment source code. Note, only one setting should be  uncommented 
+1. Import the experiment source code in line 11 of  Code tab.
+2. If there are multiple settings for the experiment, uncomment your intended setting in the experiment source code. Note, only one setting should be experimented in each run.
 3. In the interface tab:
    + Change the location of generated data , if necessary
    + Select the types of data you want to  generate
