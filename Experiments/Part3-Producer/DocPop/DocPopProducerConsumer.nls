@@ -29,9 +29,6 @@ to setup
 
 create-document-popularity-producer-profiles 48 [profiles-setup k m 1 [1] yellow]
 create-document-popularity-profiles 12  [profiles-setup k m 1 [0] red]   
-  
-
-  
-      
+       
   my-layout    
 end
