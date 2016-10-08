@@ -12,7 +12,7 @@ to-report peer-popularity-producer-profiles-payoff
   let reward 1.5
   let punishment 0.5
   let turncost 0
-  report  score-producer-stock 
+  report  score-producer
 end
 
 to-report peer-popularity-producer-profiles-like

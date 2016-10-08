@@ -7,8 +7,8 @@ to setup
   let k 5
   let m 5
 
-  create-documents 200 [documents-setup 1 [0]]
   create-documents 200 [documents-setup 1 [1]]
+  create-documents 200 [documents-setup 1 [0]]
   
 ;----------------------------------------------------------------------------------------------------------------------------------
 ;setting 1: document-popularity strategy for major taste consumers(70%), peer-like-similarity strategy for minor taste consumers(30%)

@@ -3,13 +3,14 @@ extensions [CSV profiler]
 ;; Load External Files
 __includes [
 
+  ; Experiment---------------------
+  "Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
+
+
+  ;Helper Functions and Global Profiles---------------------
   "helper-functions.nls"
   "global-profiles.nls"
   "test-code.nls"
-
-  ; Experiment---------------------
-  "Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-PeerLikeSim.nls";
-
 
   ;Data Generation---------------------
   "plot.nls"
@@ -167,7 +168,7 @@ to go
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
 [tick
 
- Draw
+ writeData
 
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
@@ -224,29 +225,29 @@ to highlight-peer
   set size 2.5
 end
 
-to Draw
+to writeData
 
 if (total-number-of-turns mod  number-of-agents = 0 ) [
 
     if (iterationCounter != total-number-of-turns / number-of-agents)
     [
 
-          if (drawPayoff?)
+          if (write-payoff?)
           [
-            drawPayoff
-
+            write-payoff
           ]
-          if (drawNumofLikesPerTag?)
+          if (write-numofLikesPerTag?)
           [
-            drawNumofLikesPerTag
-
+            write-numofLikesPerTag
           ]
-          if (drawNumofLikesPerDoc?)
+          if (write-numofLikesPerDoc?)
           [
-             drawNumofLikesPerDoc
-
+             write-numofLikesPerDoc
           ]
-
+          if (write-numofFollowersPerPeer?)
+          [
+             write-numofFollowersPerPeer
+          ]
           set iterationCounter iterationCounter + 1
     ]
 ]
@@ -296,7 +297,7 @@ INPUTBOX
 212
 125
 the-random-seed
-80
+1000
 1
 0
 Number
@@ -437,41 +438,63 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/histogram/
+Experiments/Result/Producer-DP-setting2-
 1
 0
 String
 
 SWITCH
-910
+905
 164
-1121
+1119
 197
-drawPayoff?
-drawPayoff?
+write-payoff?
+write-payoff?
 0
 1
 -1000
 
 SWITCH
-912
-213
-1121
-246
-drawNumofLikesPerTag?
-drawNumofLikesPerTag?
-0
+906
+214
+1119
+247
+write-numofLikesPerTag?
+write-numofLikesPerTag?
+1
 1
 -1000
 
 SWITCH
-912
-266
-1123
-299
-drawNumofLikesPerDoc?
-drawNumofLikesPerDoc?
-0
+905
+263
+1120
+296
+write-numofLikesPerDoc?
+write-numofLikesPerDoc?
+1
+1
+-1000
+
+SWITCH
+1132
+263
+1345
+296
+write-numOfFollowersPerPeer?
+write-numOfFollowersPerPeer?
+1
+1
+-1000
+
+SWITCH
+1132
+214
+1343
+247
+write-numofFollowersPerTag?
+write-numofFollowersPerTag?
+1
 1
 -1000
 
@@ -922,7 +945,7 @@ go</setup>
     <go>go</go>
     <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
-    <steppedValueSet variable="the-random-seed" first="100" step="100" last="1000"/>
+    <steppedValueSet variable="the-random-seed" first="200" step="100" last="1000"/>
   </experiment>
 </experiments>
 @#$#@#$#@
