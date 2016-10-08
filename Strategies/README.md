@@ -17,17 +17,16 @@ It calculates a peer payoff in each run, The payoff for producers and consumers 
 
 
 + Rank Srategy:
+      Thses are the different document filtering strategys that are studied during the experiment.
+      We use the "with memory" version of these strategies, which keeps record of topK documents in each run, and does not repeat them in
+      the next runs of that peers. The main rakning strategies in our experiments are: 
 
-   Thses are the different document filtering strategys that are studied during the experiment.
-   We use the "with memory" version of these strategies, which keeps record of topK documents in each run, and does not repeat them in
-   the next runs of that peers. The main rakning strategies in our experiments are: 
-
-     Random 
-     Peer-like-similarity
-     Peer-follow-similarity
-     Peer-distance
-     Document-popularity
-     Follow-popularity 
+        Random 
+        Peer-like-similarity
+        Peer-follow-similarity
+        Peer-distance
+        Document-popularity
+        Follow-popularity 
 
 
 
