@@ -1,14 +1,14 @@
-In this section, each ranking strategy experimented separately.
+* In this section, each ranking strategy experimented separately.
 
-two different settings are Uniform taste consumers and Major-Minor taste consumers.
+* Two different settings of each experiment are Uniform taste consumers and Major-Minor taste consumers. The result of the simulation for each setting is located in their correspondent folder.
 
-The result of the tests of each setting is located in their correspondent folder.
+* The experimented startegies are: 
 
-The experimented startegies are: 
+  + Random
+  + Document-popularity
+  + Peer-Popularity
+  + Peer-like-similarity
+  + Peer-follow-similarity
+  + Peer-distance
 
-+ Random
-+ Document-popularity
-+ Peer-Popularity
-+ Peer-like-similarity
-+ Peer-follow-similarity
-+ Peer-distance
+  Also, We manually created the results of best case and worst case strategies to use them as a yardstick for othe strategies. 
