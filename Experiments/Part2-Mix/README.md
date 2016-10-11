@@ -1,11 +1,11 @@
-In this section, the mix of two strategies were used in each experiment.
+In this section, the mix of two strategies was used in each experiment.
 
-Two different settings of each experiments are as the following: 
+Two different settings of each experiment are as the following: 
 
-1. 70% of peers use Startegy 1, 30% of peers use strategy 2
+1. 70% of peers use Strategy 1, 30% of peers use strategy 2
 2. 30% of peers use strategy 1, 70% of peers use strategy 2
 
-The startegies used for these experiment are:
+The strategies used for these experiments are:
 
 + Document-popularity and Peer-like-similarity
 + Peer-popularity and Peer-like-similarity
