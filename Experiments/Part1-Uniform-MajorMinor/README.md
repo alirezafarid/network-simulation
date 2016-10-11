@@ -2,7 +2,7 @@ In this section, each ranking strategy is experimented separately.
 
 Two different settings of each experiment are Uniform taste consumers and Major-Minor taste consumers. The result of the simulation for each setting is located in their correspondent folder.
 
-The experimented startegies are: 
+The experimented strategies are: 
 
   * Random
   * Document-popularity
