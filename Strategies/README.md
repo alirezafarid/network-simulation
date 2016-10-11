@@ -2,7 +2,7 @@ This folder contains the code for the following strategies used in simulation:
 
 + Like Strategy: Once a peer decides to like a document, this strategy would connect that peer to that document through a directed link, called connect-link.
 
-+ Follow Strategy: Once a peer decides to follow another peer, this strategy would connect that peer to that target peer througgh the directed links, called, connect-link.
++ Follow Strategy: Once a peer decides to follow another peer, this strategy would connect that peer to that target peer through the directed links, called, connect-link.
 
 + Payoff Strategy: It calculates a peer payoff in each run, The payoff for producers and consumers are calculated differently. 
   * Payoff of producer: The number of times that documents that match with the peer's taste are placed in the topK of other peers, including other producers, since the last run of that peer 
