@@ -4,7 +4,7 @@ extensions [CSV profiler]
 __includes [
 
   ; Experiment---------------------
-  "Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
+  "Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-PeerLikeSim.nls"
 
 
   ;Helper Functions and Global Profiles---------------------
@@ -297,7 +297,7 @@ INPUTBOX
 212
 125
 the-random-seed
-1000
+700
 1
 0
 Number
@@ -438,7 +438,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Result/Producer-DP-setting2-
+Experiments/Results/Mix-PePo-PeSi_sOne
 1
 0
 String
@@ -461,7 +461,7 @@ SWITCH
 247
 write-numofLikesPerTag?
 write-numofLikesPerTag?
-1
+0
 1
 -1000
 
@@ -945,7 +945,7 @@ go</setup>
     <go>go</go>
     <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
-    <steppedValueSet variable="the-random-seed" first="200" step="100" last="1000"/>
+    <steppedValueSet variable="the-random-seed" first="100" step="100" last="1000"/>
   </experiment>
 </experiments>
 @#$#@#$#@

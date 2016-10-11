@@ -2,7 +2,7 @@
 
 to write-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
-       file-type mean [point] of turtles with  [not document? and  tags = [1]] file-type " , " 
+       file-type mean [score] of turtles with  [not document? and  tags = [1]] file-type " , " 
        file-type   mean  [score] of turtles with [not document? and tags = [0]] file-type "\n " 
   file-close       
        
