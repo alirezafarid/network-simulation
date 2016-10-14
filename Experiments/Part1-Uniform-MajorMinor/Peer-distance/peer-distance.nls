@@ -17,13 +17,13 @@ to setup
 
 ;setting 1:   
  
-;  create-peer-distance-profiles 30 [profiles-setup k m 1 [1] green]
-;  create-peer-distance-profiles 30 [profiles-setup k m 1 [0] red]
+  create-peer-distance-profiles 30 [profiles-setup k m 1 [1] green]
+  create-peer-distance-profiles 30 [profiles-setup k m 1 [0] red]
   
 ;setting 2:
       
-  create-peer-distance-profiles 42 [profiles-setup k m 1 [1] green]
-  create-peer-distance-profiles 18 [profiles-setup k m 1 [0] red]
+;  create-peer-distance-profiles 42 [profiles-setup k m 1 [1] green]
+;  create-peer-distance-profiles 18 [profiles-setup k m 1 [0] red]
 
 
   my-layout    

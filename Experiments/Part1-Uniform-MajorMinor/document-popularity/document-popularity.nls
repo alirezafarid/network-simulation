@@ -8,8 +8,8 @@ to setup
   let k 5
   let m 5
 
-  create-documents 200 [documents-setup 1 [0]]
-  create-documents 200 [documents-setup 1 [1]]
+  create-documents 200 [documents-setup 1 [0] ]
+  create-documents 200 [documents-setup 1 [1] ]
 
 
 ;setting 1: document-popularity strategy for uniform consumers (50% of taste 1 - 50% of taste 0)
@@ -18,8 +18,8 @@ to setup
 
 ;setting 1:   
  
-  ;create-document-popularity-profiles 30 [profiles-setup k m 1 [1] green]
-  ;create-document-popularity-profiles 30 [profiles-setup k m 1 [0] red]
+;  create-document-popularity-profiles 30 [profiles-setup k m 1 [1] green]
+;  create-document-popularity-profiles 30 [profiles-setup k m 1 [0] red]
   
 
 ;setting 2:   

@@ -4,7 +4,7 @@ extensions [CSV profiler]
 __includes [
 
   ; Experiment---------------------
-  "Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-PeerLikeSim.nls"
+  "Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
 
 
   ;Helper Functions and Global Profiles---------------------
@@ -297,7 +297,7 @@ INPUTBOX
 212
 125
 the-random-seed
-700
+800
 1
 0
 Number
@@ -438,7 +438,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Results/Mix-PePo-PeSi_sOne
+Experiments/Results/peerDis_uniform
 1
 0
 String
@@ -461,7 +461,7 @@ SWITCH
 247
 write-numofLikesPerTag?
 write-numofLikesPerTag?
-0
+1
 1
 -1000
 
@@ -941,7 +941,9 @@ go</setup>
     </enumeratedValueSet>
   </experiment>
   <experiment name="RunMultipleTimes" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
+    <setup>let old-var1 the-random-seed
+setup
+set the-random-seed old-var1</setup>
     <go>go</go>
     <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
