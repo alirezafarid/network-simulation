@@ -20,15 +20,22 @@ to setup
  ;Producers collaborate by liking and following of other peers, and thus they act as a consumer for other producers
 
 
-;Setting 1 (70% consumers and 30% producers) 
+;Setting 1 
 
 ;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"]   
 ;create-document-popularity-leech-profiles 18 [profiles-setup k m 1 [0] yellow "consumer"]
 
-;Setting 2 (30% consumers and 70% producers)
+;Setting 2 
+
+;create-document-popularity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
+;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"]  
+
+;Setting 3
 
 create-document-popularity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
-create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"]   
+create-document-popularity-leech-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
+
+ 
       
   my-layout    
 end

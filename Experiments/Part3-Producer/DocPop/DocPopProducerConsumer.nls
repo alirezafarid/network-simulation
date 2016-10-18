@@ -21,15 +21,49 @@ to setup
 
 ;Setting 1 
 
-create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
-create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
-create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
+;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
+;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
+;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
 
 ;Setting 2
 
 ;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
 ;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
 ;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
+
+;Setting 3
+
+;create-document-popularity-profiles 60  [profiles-setup k m 1 [1] red "consumer"] 
+;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
+
+;Setting 4
+
+;create-document-popularity-profiles 60  [profiles-setup k m 1 [1] red "consumer"] 
+;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
+
+;Setting 5
+
+;    create-document-popularity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]  
+;    create-peer-similarity-profiles  18 [profiles-setup k m 1 [0] blue "consumer"] 
+;    create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
+    
+;setting6
+         
+;   create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
+;   create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green "consumer"]
+;   create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]   
+
+;setting7
+         
+;    create-document-popularity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]  
+;    create-peer-similarity-profiles  18 [profiles-setup k m 1 [0] blue "consumer"] 
+;    create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
+
+;setting8
+         
+   create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
+   create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green "consumer"]
+   create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]   
 
 
 

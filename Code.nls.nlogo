@@ -5,7 +5,7 @@ __includes [
 
   ; Experiment---------------------
   ;Part1
-  "Experiments/Part1-Uniform-MajorMinor/Random/random.nls"
+  ;"Experiments/Part1-Uniform-MajorMinor/Random/random.nls"
   ;"Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
 
   ;Part 2
@@ -16,7 +16,7 @@ __includes [
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
 
   ;Part 4
-  ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
+  "Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
   ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
@@ -246,6 +246,10 @@ if (total-number-of-turns mod  number-of-agents = 0 ) [
     if (iterationCounter != total-number-of-turns / number-of-agents)
     [
 
+          if (write-producer-payoff?)
+          [
+            write-producer-payoff
+          ]
           if (write-payoff?)
           [
             write-payoff
@@ -311,7 +315,7 @@ INPUTBOX
 212
 125
 the-random-seed
-800
+100
 1
 0
 Number
@@ -452,7 +456,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Results/Random-STOne
+Experiments/Results/DocPop_Both_leech
 1
 0
 String
@@ -508,6 +512,17 @@ SWITCH
 247
 write-numofFollowersPerTag?
 write-numofFollowersPerTag?
+1
+1
+-1000
+
+SWITCH
+1146
+172
+1349
+205
+write-producer-payoff?
+write-producer-payoff?
 1
 1
 -1000
