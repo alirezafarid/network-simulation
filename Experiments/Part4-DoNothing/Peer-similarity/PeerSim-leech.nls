@@ -21,13 +21,13 @@ to setup
 
 ;Setting 1 (70% consumers and 30% producers) 
 
-;create-peer-similarity-profiles 48  [profiles-setup k m 1 [1] red]   
-;create-peer-similarity-leech-profiles 12 [profiles-setup k m 1 [0] yellow]
+ create-peer-similarity-profiles 42  [profiles-setup k m 1 [1] red "consumer"]   
+ create-peer-similarity-leech-profiles 18 [profiles-setup k m 1 [0] yellow "consumer"]
 
 ;Setting 2 (30% consumers and 70% producers)
 
-create-peer-similarity-leech-profiles 48 [profiles-setup k m 1 [1] yellow]
-create-peer-similarity-profiles 12  [profiles-setup k m 1 [0] red]   
+;create-peer-similarity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
+;create-peer-similarity-profiles 18  [profiles-setup k m 1 [0] red "consumer"]   
 
       
   my-layout    

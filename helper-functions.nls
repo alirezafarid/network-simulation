@@ -2,11 +2,12 @@
 ;; PROFILE FUNCTIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-to profiles-setup [k m tag-count tag-list colour]
+to profiles-setup [k m tag-count tag-list colour pType]
   turtles-layout ;Standard layout
   set score 0
   set point 0
   set turns 0
+  set turtleType pType
   set max-k k
   set max-m m
   set document? false

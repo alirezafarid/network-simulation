@@ -77,23 +77,34 @@ to-report score-producer-stock
 end
 
 to-report score-producer
+ 
   let document-list [self] of turtles with [document?] 
   
   let shared-tags-documents filter [shared-member ([tags] of ?) ([tags] of user)] document-list   
+  
+  ;let producers  [self] of turtles with [not document? and  breed =  document-popularity-producer-profiles ]
+    
+  ; Create all cosumners  
+  ;
+  
   let temp-score 0
+  let temp-score-producer 0
   
   ;set shared-tags-documents children
   ask turtle-set shared-tags-documents [
     ask my-in-memory-links [
-
+        
        ;find all the times the file has been in someones topk since last turn
        set temp-score temp-score + length  timestamps
-
-
-     ] 
+     ]   
   ]
   
-  report temp-score
+  ask connect-links with [member? end2 documents = true  and  [tags] of end2 = [tags] of user and  member? end1 [breed] of user = false]
+  [
+    set temp-score-producer temp-score-producer + length  timestamps
+  ]  
+  
+  report temp-score-producer
 end
 
 

@@ -15,14 +15,14 @@ to setup
 
 ;setting 1:   
  
-;  create-complete-random-profiles 30 [profiles-setup k m 1 [1] green]
-;  create-complete-random-profiles 30 [profiles-setup k m 1 [0] red]
+  create-complete-random-profiles 30 [profiles-setup k m 1 [1] green "consumer"]
+  create-complete-random-profiles 30 [profiles-setup k m 1 [0] red "consumer"]
   
 ;setting 2:
    
     
-  create-complete-random-profiles 42 [profiles-setup k m 1 [1] green]
-  create-complete-random-profiles 18 [profiles-setup k m 1 [0] red]
+;  create-complete-random-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
+;  create-complete-random-profiles 18 [profiles-setup k m 1 [0] red "consumer"]
 
 
 

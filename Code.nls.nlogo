@@ -4,7 +4,20 @@ extensions [CSV profiler]
 __includes [
 
   ; Experiment---------------------
-  "Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
+  ;Part1
+  "Experiments/Part1-Uniform-MajorMinor/Random/random.nls"
+  ;"Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
+
+  ;Part 2
+  ;"Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
+  ;"Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
+
+  ;Part3
+  ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
+
+  ;Part 4
+  ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
+  ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
   ;Helper Functions and Global Profiles---------------------
@@ -75,6 +88,7 @@ turtles-own[
   last-turn                 ;;The last turn this peer was the user
   children                  ;;Get the children of this file
 
+  turtleType
   num-likes
   iteration-num             ;;Keeps track of current iteration number in experiment.
   iteration-turn-list       ;;List for checking whether this agent has acted in each iteration.
@@ -438,7 +452,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Results/peerDis_uniform
+Experiments/Results/Random-STOne
 1
 0
 String
