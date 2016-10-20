@@ -1,4 +1,11 @@
 to-report like-tags-in-topk
-  report filter [shared-member ([tags] of ?) ([tags] of user)] turn-ranked
+  
+  let liked-docs filter [shared-member ([tags] of ?) ([tags] of user)] turn-ranked
+  
+  foreach liked-docs [
+   matrix:set like-matrix ([who] of user - number-of-documents)  ([who] of ? ) 1
+  ]
+  
+  report liked-docs
 end
 

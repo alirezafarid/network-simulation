@@ -1,4 +1,4 @@
-extensions [CSV profiler]
+extensions [matrix CSV profiler]
 
 ;; Load External Files
 __includes [
@@ -10,13 +10,13 @@ __includes [
 
   ;Part 2
   ;"Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
-  ;"Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
+  "Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
 
   ;Part3
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
 
   ;Part 4
-  "Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
+  ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
   ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
@@ -65,6 +65,9 @@ __includes [
 
 
 globals[
+  follow-matrix
+  like-matrix
+
   user
   inactive-color
   number-of-agents
@@ -115,6 +118,10 @@ to simulator-setup
   set number-of-agents  60
   set number-of-iterations 80
   set total-number-of-turns 0
+
+  set like-matrix matrix:make-constant  number-of-agents number-of-documents 0
+  set follow-matrix matrix:make-constant  number-of-agents number-of-agents 0
+
 
   reset-ticks
 
@@ -182,7 +189,9 @@ to go
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
 [tick
 
+
  writeData
+
 
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
@@ -200,16 +209,16 @@ end
 
 to act
 
- run (word "set turn-ranked " [breed] of self "-rank")
+  run (word "set turn-ranked " [breed] of self "-rank")
 
   run (word "set turn-payoff " [breed] of self "-payoff")
-
 
   run (word "set turn-liked " [breed] of self "-like")
 
   run (word "set turn-followed " [breed] of self "-follow")
 
   run (word "set turn-published " [breed] of self "-publish")
+
 
 end
 
@@ -246,6 +255,11 @@ if (total-number-of-turns mod  number-of-agents = 0 ) [
     if (iterationCounter != total-number-of-turns / number-of-agents)
     [
 
+
+         if (write-matrix?)
+          [
+            write-matrix
+          ]
           if (write-producer-payoff?)
           [
             write-producer-payoff
@@ -315,7 +329,7 @@ INPUTBOX
 212
 125
 the-random-seed
-100
+300
 1
 0
 Number
@@ -456,7 +470,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Results/DocPop_Both_leech
+Experiments/Re/MixMajorDocPop
 1
 0
 String
@@ -468,7 +482,7 @@ SWITCH
 197
 write-payoff?
 write-payoff?
-0
+1
 1
 -1000
 
@@ -524,6 +538,17 @@ SWITCH
 write-producer-payoff?
 write-producer-payoff?
 1
+1
+-1000
+
+SWITCH
+906
+319
+1120
+352
+write-Matrix?
+write-Matrix?
+0
 1
 -1000
 

@@ -19,47 +19,47 @@ to setup
  ;Producers collaborate by liking and following of other peers, and thus they act as a consumer for other producers
 
 
-;Setting 1 
+;Setting 1 Producer (Minor doc-pop) 112817.1111
 
 ;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
 ;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
 ;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
 
-;Setting 2
+;Setting 2 producer (Major doc-pop) 164763.8
 
 ;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
 ;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
 ;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
 
-;Setting 3
+;Setting 3  Producer (same taste) 711593
 
 ;create-document-popularity-profiles 60  [profiles-setup k m 1 [1] red "consumer"] 
 ;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
 
-;Setting 4
+;Setting 4 producer (opposite taste) 0
 
 ;create-document-popularity-profiles 60  [profiles-setup k m 1 [1] red "consumer"] 
 ;create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
 
-;Setting 5
+;Setting 5 producer (Mix, Major doc-pop) 188281
 
 ;    create-document-popularity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]  
 ;    create-peer-similarity-profiles  18 [profiles-setup k m 1 [0] blue "consumer"] 
 ;    create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [1] yellow "producer"]
     
-;setting6
+;setting6 (Mix, Minor doc-pop) 76246
          
 ;   create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
 ;   create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green "consumer"]
 ;   create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]   
 
-;setting7
+;setting7 (Mix, Minor Peer-like-sim) 207780
          
 ;    create-document-popularity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]  
 ;    create-peer-similarity-profiles  18 [profiles-setup k m 1 [0] blue "consumer"] 
 ;    create-document-popularity-producer-profiles 1 [profiles-setup k m 1 [0] yellow "producer"]
 
-;setting8
+;setting8 (Mix, Major Peer-like-sim) 493971
          
    create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
    create-document-popularity-profiles 18 [profiles-setup k m 1 [0] green "consumer"]

@@ -1,6 +1,35 @@
 ;;SIMULATOR: VERSION 1
 
 
+to write-Matrix
+  file-open (word  directory-of-results  "-" the-random-seed "-" "follow-Matrix-" (total-number-of-turns / 60)  ".csv")  
+           
+           let matrix-list []
+           ;create a CSV value version o
+           let rowCount 0
+           let colCount 0 
+           let val 0
+           
+           
+           file-type "Source "  file-type ", " file-type "Target "  file-type "\n"
+           repeat number-of-agents [ 
+                  
+                  repeat number-of-documents [ 
+                   set val matrix:get like-matrix rowCount colCount 
+                   if  (val = 1)
+                   [file-type rowCount + 1  file-type ", " file-type colCount + 1 file-type "\n" ]
+                     
+                            
+                  ;file-type val  file-type ", "            
+                   set colCount   (colCount + 1) mod number-of-documents    
+                  ]
+            set  rowCount rowCount + 1  
+            ;file-type "\n"     
+           ]  
+       file-close      
+       
+end
+
 to write-producer-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
        file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" ] file-type " , " 

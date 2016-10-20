@@ -11,5 +11,9 @@ end
 to-report follow-peers [connections]
   
   draw-connections connections
+  foreach connections [
+   matrix:set follow-matrix ([who] of user - number-of-documents)  ([who] of ? - number-of-documents  ) 1
+  ]
+   
   report connections
 end
