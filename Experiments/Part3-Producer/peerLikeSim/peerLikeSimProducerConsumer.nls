@@ -1,0 +1,37 @@
+;;SIMULATOR: VERSION 1
+
+to setup
+  simulator-setup
+  let t-list n-values 2 [?]
+  let t-count 2
+  let k 5
+  let m 5
+
+  create-documents 200  [documents-setup 1 [0]]
+  create-documents 200 [documents-setup 1 [1]]
+  
+;peer-similarity strategy for consumers and producers, with major and minor taste (70%-30%)
+; Note
+ ;The difference between the producers and consumers is that:1.  producers publish new documents
+ ; in addition to consumers actions, which are like and follow. 2. the payoff of consumers and producers
+ ; are calculated differently. 
+ 
+ 
+;Producers collaborate by liking and following of other peers, and thus they act as a consumer for other producers
+
+;Setting 1
+;create-peer-similarity-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"] 
+;create-peer-similarity-producer-profiles 18  [profiles-setup k m 1 [1] red "producer"] 
+
+
+;Setting 2
+;create-peer-similarity-profiles 42  [profiles-setup k m 1 [1] red "consumer"] 
+;create-peer-similarity-producer-profiles 18 [profiles-setup k m 1 [0] yellow "producer"]
+
+;Setting 3
+create-peer-similarity-producer-profiles 42 [profiles-setup k m 1 [1] yellow "producer"]
+create-peer-similarity-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
+ 
+
+  my-layout    
+end
