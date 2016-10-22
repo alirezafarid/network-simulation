@@ -1,6 +1,5 @@
 ;;SIMULATOR: VERSION 1
 
-
 to write-Matrix
   file-open (word  directory-of-results  "-" the-random-seed "-" "follow-Matrix-" (total-number-of-turns / 60)  ".csv")  
            
@@ -17,7 +16,7 @@ to write-Matrix
                   repeat number-of-documents [ 
                    set val matrix:get like-matrix rowCount colCount 
                    if  (val = 1)
-                   [file-type rowCount + 1  file-type ", " file-type colCount + 1 file-type "\n" ]
+                   [file-type rowCount + 1  file-type ", " file-type  number-of-agents + colCount + 1 file-type "\n" ]
                      
                             
                   ;file-type val  file-type ", "            
@@ -32,9 +31,8 @@ end
 
 to write-producer-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
-       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" ] file-type " , " 
-       file-type   mean  [score] of turtles with [not document? and tags = [0] and turtleType = "consumer" ] file-type ", " 
-       file-type   mean  [point] of turtles with [not document? and turtleType = "producer" ] file-type "\n " 
+       file-type mean [score] of turtles with  [not document?   and  turtleType = "consumer" ] file-type " , " 
+       file-type  mean [point] of turtles with [not document?   and  turtleType = "producer" ] file-type "\n " 
   file-close       
        
 end
@@ -42,8 +40,8 @@ end
 
 to write-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
-       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" ] file-type " , " 
-       file-type   mean  [score] of turtles with [not document? and tags = [0] and turtleType = "consumer" ] file-type "\n " 
+       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" and breed = document-popularity-profiles ] file-type " , " 
+       file-type   mean  [score] of turtles with [not document? and tags = [1] and turtleType = "consumer" and breed = document-popularity-leech-profiles   ] file-type "\n " 
        
   file-close       
        

@@ -10,13 +10,14 @@ __includes [
 
   ;Part 2
   ;"Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
-  "Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
+  ;"Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
 
   ;Part3
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
+  ;"Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
 
   ;Part 4
-  ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
+  "Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
   ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
@@ -196,6 +197,7 @@ if( number-of-iterations * number-of-agents >= total-number-of-turns )
  if ( number-of-iterations * number-of-agents = total-number-of-turns )
  [
     set total-number-of-turns total-number-of-turns + 1
+
  ]
 
 ]
@@ -210,15 +212,12 @@ end
 to act
 
   run (word "set turn-ranked " [breed] of self "-rank")
-
-  run (word "set turn-payoff " [breed] of self "-payoff")
-
   run (word "set turn-liked " [breed] of self "-like")
 
   run (word "set turn-followed " [breed] of self "-follow")
 
   run (word "set turn-published " [breed] of self "-publish")
-
+  run (word "set turn-payoff " [breed] of self "-payoff")
 
 end
 
@@ -329,7 +328,7 @@ INPUTBOX
 212
 125
 the-random-seed
-300
+100
 1
 0
 Number
@@ -470,7 +469,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Re/MixMajorDocPop
+Experiments/Re/DocPop-minorLeech-sameTaste
 1
 0
 String
@@ -482,7 +481,7 @@ SWITCH
 197
 write-payoff?
 write-payoff?
-1
+0
 1
 -1000
 
@@ -548,7 +547,7 @@ SWITCH
 352
 write-Matrix?
 write-Matrix?
-0
+1
 1
 -1000
 
@@ -1001,7 +1000,7 @@ set the-random-seed old-var1</setup>
     <go>go</go>
     <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
-    <steppedValueSet variable="the-random-seed" first="100" step="100" last="1000"/>
+    <steppedValueSet variable="the-random-seed" first="100" step="100" last="500"/>
   </experiment>
 </experiments>
 @#$#@#$#@
