@@ -14,10 +14,10 @@ __includes [
 
   ;Part3
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
-  ;"Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
+  "Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
 
   ;Part 4
-  "Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
+  ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
   ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
@@ -113,6 +113,7 @@ turtles-own[
 ;; SETUP PROCEDURE: initialize variables and classes
 to simulator-setup
   ;;Clear the values from the last simulation
+
   clear-all
   set iterationCounter 0
   set number-of-documents 400
@@ -181,10 +182,8 @@ to go
         ]
       ]
   ]
-;]
 
-;     run (word "set turn-leave? " [breed] of self "-leave?")
-;    update-variables
+
   ]
 
 if( number-of-iterations * number-of-agents >= total-number-of-turns )
@@ -469,7 +468,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Re/DocPop-minorLeech-sameTaste
+Experiments/Re/PeerSim-MajorLeech-sameTaste
 1
 0
 String
