@@ -12,6 +12,9 @@ to setup
   let k 5    
   simulator-setup
   
+   create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
+  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+  
 ;document-popularity strategy for consumers and producers, with major and minor taste (70%-30%)
 ; Note
  ;The difference between the producers and consumers is that:1.  producers publish new documents

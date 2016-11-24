@@ -12,6 +12,9 @@ to setup
   let k 5    
   simulator-setup  
 
+   create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
+  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+  
 ;Setting 1
 
 create-document-popularity-profiles 42 [profiles-setup k  1 [1] yellow "consumer"] 

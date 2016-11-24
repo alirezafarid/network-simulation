@@ -9,7 +9,7 @@ __includes [
   ;"Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
 
   ;Part 2
-  ;"Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
+  "Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
   ;"Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
 
   ;Part3
@@ -18,7 +18,7 @@ __includes [
 
   ;Part 4
   ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
-  "Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
+  ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
   ;Helper Functions and Global Profiles---------------------
@@ -448,7 +448,7 @@ SWITCH
 197
 write-payoff?
 write-payoff?
-1
+0
 1
 -1000
 
@@ -503,7 +503,7 @@ SWITCH
 205
 write-producer-payoff?
 write-producer-payoff?
-0
+1
 1
 -1000
 

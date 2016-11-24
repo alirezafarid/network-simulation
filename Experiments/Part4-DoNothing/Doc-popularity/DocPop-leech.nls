@@ -12,6 +12,9 @@ to setup
   let k 5    
   simulator-setup
   
+   create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
+  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+  
 
 ;document-popularity strategy for consumers and producers, with major and minor taste (70%-30%)
 ; Note
@@ -32,10 +35,6 @@ to setup
 ;create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
 ;create-document-popularity-profiles 18  [profiles-setup k  1 [0] red "consumer"]  
 
-;Setting 3
-
-;create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
-;create-document-popularity-leech-profiles 18  [profiles-setup k  1 [0] red "consumer"] 
 
 ;Setting 4
 
