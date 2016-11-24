@@ -2,14 +2,13 @@
 ;; PROFILE FUNCTIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-to profiles-setup [k m tag-count tag-list colour pType]
+to profiles-setup [k tag-count tag-list colour pType]
   turtles-layout ;Standard layout
   set score 0
   set point 0
   set turns 0
   set turtleType pType
   set max-k k
-  set max-m m
   set document? false
   set active? true
   set tags n-of tag-count tag-list
@@ -17,12 +16,7 @@ to profiles-setup [k m tag-count tag-list colour pType]
   set children []
   set turn-payoff-list []
   
-  if active? [set color default-color]
-  
-  set iteration-num 0
-  set iteration-turn-list []     
-  while [length iteration-turn-list < number-of-iterations]
-  [set iteration-turn-list lput false iteration-turn-list]        
+  if active? [set color default-color]     
      
 end
 

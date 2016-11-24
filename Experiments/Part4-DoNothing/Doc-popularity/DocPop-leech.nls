@@ -1,14 +1,16 @@
 ;;SIMULATOR: VERSION 1
 
 to setup
+  ;;Clear the values from the last simulation
+  clear-all  
+  set number-of-documents 400
+  set number-of-agents  60
+  set number-of-iterations 80
+ 
+  let number-of-peer-tags 1
+  let number-of-doc-tags 1
+  let k 5    
   simulator-setup
-  let t-list n-values 2 [?]
-  let t-count 2
-  let k 5
-  let m 5
-
-  create-documents 200 [documents-setup 1 [0]]
-  create-documents 200 [documents-setup 1 [1]]
   
 
 ;document-popularity strategy for consumers and producers, with major and minor taste (70%-30%)
@@ -22,28 +24,28 @@ to setup
 
 ;Setting 1 
 
-;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"]   
-;create-document-popularity-leech-profiles 18 [profiles-setup k m 1 [0] yellow "consumer"]
+;create-document-popularity-profiles 42  [profiles-setup k  1 [1] red "consumer"]   
+;create-document-popularity-leech-profiles 18 [profiles-setup k  1 [0] yellow "consumer"]
 
 ;Setting 2 
 
-;create-document-popularity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
-;create-document-popularity-profiles 18  [profiles-setup k m 1 [0] red "consumer"]  
+;create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
+;create-document-popularity-profiles 18  [profiles-setup k  1 [0] red "consumer"]  
 
 ;Setting 3
 
-;create-document-popularity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
-;create-document-popularity-leech-profiles 18  [profiles-setup k m 1 [0] red "consumer"] 
+;create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
+;create-document-popularity-leech-profiles 18  [profiles-setup k  1 [0] red "consumer"] 
 
 ;Setting 4
 
-;create-document-popularity-profiles 42  [profiles-setup k m 1 [1] red "consumer"]
-;create-document-popularity-leech-profiles 18 [profiles-setup k m 1 [1] yellow "consumer"]
+;create-document-popularity-profiles 42  [profiles-setup k  1 [1] red "consumer"]
+;create-document-popularity-leech-profiles 18 [profiles-setup k  1 [1] yellow "consumer"]
 
 ;Setting 5
 
-create-document-popularity-leech-profiles 42 [profiles-setup k m 1 [1] yellow "consumer"]
-create-document-popularity-profiles 18  [profiles-setup k m 1 [1] red "consumer"]
+create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
+create-document-popularity-profiles 18  [profiles-setup k 1 [1] red "consumer"]
 
    
 

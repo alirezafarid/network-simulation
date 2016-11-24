@@ -1,28 +1,35 @@
 ;;SIMULATOR: VERSION 1
 
 to setup
+  ;;Clear the values from the last simulation
+  clear-all 
+ 
+  set number-of-documents 400
+  set number-of-agents  60
+  set number-of-iterations 80
+ 
+  let list-of-tags n-values 2 [?]
+  let number-of-peer-tags 1
+  let number-of-doc-tags 1
+  let k 5    
   simulator-setup
-  let t-list n-values 2 [?]
-  let t-count 2
-  let k 5
-  let m 5
 
-  create-documents 200 [documents-setup 1 [0]]
-  create-documents 200 [documents-setup 1 [1]]
+  create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
+  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
   
 ;setting 1: random strategy for uniform consumers (50% of taste 1 - 50% of taste 0)
 ;setting 2: random strategy for major-minor consumers with (70%-30%) 
 
 ;setting 1:   
  
-  create-complete-random-profiles 30 [profiles-setup k m 1 [1] green "consumer"]
-  create-complete-random-profiles 30 [profiles-setup k m 1 [0] red "consumer"]
+  create-complete-random-profiles 30 [profiles-setup k  1 [1] green "consumer"]
+  create-complete-random-profiles 30 [profiles-setup k  1 [0] red "consumer"]
   
 ;setting 2:
    
     
-;  create-complete-random-profiles 42 [profiles-setup k m 1 [1] green "consumer"]
-;  create-complete-random-profiles 18 [profiles-setup k m 1 [0] red "consumer"]
+;  create-complete-random-profiles 42 [profiles-setup k  1 [1] green "consumer"]
+;  create-complete-random-profiles 18 [profiles-setup k  1 [0] red "consumer"]
 
 
 

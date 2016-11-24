@@ -40,8 +40,8 @@ end
 
 to write-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
-       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" and breed = document-popularity-profiles ] file-type " , " 
-       file-type   mean  [score] of turtles with [not document? and tags = [1] and turtleType = "consumer" and breed = document-popularity-leech-profiles   ] file-type "\n " 
+       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" ] file-type " , " 
+       file-type   mean  [score] of turtles with [not document? and tags = [0] and turtleType = "consumer" ] file-type "\n " 
        
   file-close       
        

@@ -14,11 +14,11 @@ __includes [
 
   ;Part3
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
-  "Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
+  ;"Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
 
   ;Part 4
   ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
-  ;"Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
+  "Experiments/Part4-DoNothing/Peer-similarity/PeerSim-leech.nls"
 
 
   ;Helper Functions and Global Profiles---------------------
@@ -71,12 +71,14 @@ globals[
 
   user
   inactive-color
+
   number-of-agents
   number-of-documents
-
   number-of-iterations
   total-number-of-turns
   iterationCounter
+  selection-list
+  selected-agent
 ]
 
 ;; Assign each turtle a property
@@ -112,15 +114,10 @@ turtles-own[
 
 ;; SETUP PROCEDURE: initialize variables and classes
 to simulator-setup
-  ;;Clear the values from the last simulation
 
-  clear-all
-  set iterationCounter 0
-  set number-of-documents 400
-  set number-of-agents  60
-  set number-of-iterations 80
+  set selection-list n-values 60 [?]
+  set iterationCounter 1
   set total-number-of-turns 0
-
   set like-matrix matrix:make-constant  number-of-agents number-of-documents 0
   set follow-matrix matrix:make-constant  number-of-agents number-of-agents 0
 
@@ -147,62 +144,37 @@ end
 ;; GO PROCEDURE: This procedure is called once each 'tick', it is the top-level function for the running simulation
 to go
 
-  ;;Select a random peer, and ask it to run its own "go" procedure
-  ask (one-of turtles with [not document?]) [
+   ;;Select a random peer
 
-   ;if [active?] of self [
+    ifelse (length selection-list > 0)
+     [
+      set selected-agent one-of selection-list
+      set selection-list remove selected-agent selection-list
+     ][
+      set iterationCounter iterationCounter + 1
+      ifelse (iterationCounter >  number-of-iterations)
+      [ stop
+      ][
+      set selection-list n-values 60 [?]
+      set selected-agent  one-of selection-list
+      set selection-list remove selected-agent selection-list
+      ]
+    ]
+
+  ;ask the selected peer to act
+  ask (turtle (selected-agent + number-of-documents)) [
+
       set user self
 
-
       highlight-peer
-
-        if iteration-num + 1  < number-of-iterations
-       [
-          ifelse    total-number-of-turns < ( iteration-num + 1 ) * number-of-agents [
-
-               if item iteration-num iteration-turn-list = false [
-
-                   act
-                   update-variables
-                   set iteration-turn-list replace-item iteration-num iteration-turn-list true
-                   set total-number-of-turns total-number-of-turns + 1
-
-               ]
-      ]
-      [
-         set iteration-num iteration-num + 1
-
-         if  item iteration-num iteration-turn-list = false [
-
-            act
-            update-variables
-            set iteration-turn-list replace-item iteration-num iteration-turn-list true
-            set total-number-of-turns total-number-of-turns + 1
-
-        ]
-      ]
-  ]
-
+      act
+      update-variables
+      set total-number-of-turns total-number-of-turns + 1
 
   ]
 
-if( number-of-iterations * number-of-agents >= total-number-of-turns )
-[tick
-
-
- writeData
-
-
- if ( number-of-iterations * number-of-agents = total-number-of-turns )
- [
-    set total-number-of-turns total-number-of-turns + 1
-
- ]
-
-]
-
-
-
+tick
+writeData
 
 
 
@@ -248,9 +220,7 @@ end
 
 to writeData
 
-if (total-number-of-turns mod  number-of-agents = 0 ) [
-
-    if (iterationCounter != total-number-of-turns / number-of-agents)
+    if (iterationCounter = total-number-of-turns / number-of-agents)
     [
 
 
@@ -278,9 +248,7 @@ if (total-number-of-turns mod  number-of-agents = 0 ) [
           [
              write-numofFollowersPerPeer
           ]
-          set iterationCounter iterationCounter + 1
-    ]
-]
+   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -468,7 +436,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/Re/PeerSim-MajorLeech-sameTaste
+Experiments/X5
 1
 0
 String
@@ -480,7 +448,7 @@ SWITCH
 197
 write-payoff?
 write-payoff?
-0
+1
 1
 -1000
 
@@ -535,7 +503,7 @@ SWITCH
 205
 write-producer-payoff?
 write-producer-payoff?
-1
+0
 1
 -1000
 
