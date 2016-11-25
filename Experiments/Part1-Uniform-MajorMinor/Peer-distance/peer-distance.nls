@@ -10,7 +10,11 @@ to setup
  
   let k 5    
   simulator-setup
-  
+ 
+ 
+  create-documents (number-of-documents / 2)  [documents-setup 1 [0]]
+  create-documents (number-of-documents / 2)   [documents-setup 1 [1]]  
+
 
 ;setting 1: peer-distance strategy for uniform consumers (50% of taste 1 - 50% of taste 0)
 ;setting 2: peer-distance strategy for major-minor consumers with (70%-30%) 

@@ -920,7 +920,6 @@ go</setup>
 setup
 set the-random-seed old-var1</setup>
     <go>go</go>
-    <exitCondition>total-number-of-turns = 4801</exitCondition>
     <metric>count turtles</metric>
     <steppedValueSet variable="the-random-seed" first="100" step="100" last="500"/>
   </experiment>

@@ -6,12 +6,12 @@ to setup
   set number-of-documents 400
   set number-of-agents  60
   set number-of-iterations 80
-  let k 5 
-     
+ 
+  let k 5    
   simulator-setup
   
-  create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
-  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+  create-documents (number-of-documents / 2)  [documents-setup 1 [0]]
+  create-documents (number-of-documents / 2)   [documents-setup 1 [1]]
   
 ;----------------------------------------------------------------------------------------------------------------------------------
 ;setting 1: document-popularity strategy for major taste consumers(70%), peer-like-similarity strategy for minor taste consumers(30%)
