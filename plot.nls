@@ -1,4 +1,31 @@
 ;;SIMULATOR: VERSION 1
+to writetoFile
+
+    if (iterationCounter = total-number-of-turns / number-of-agents)
+    [
+
+         if (write-matrix?)
+          [
+            write-matrix
+          ]         
+          if (write-payoff?)
+          [
+            writeData
+          ]
+          if (write-numofLikesPerTag?)
+          [
+            write-numofLikesPerTag
+          ]
+          if (write-numofLikesPerDoc?)
+          [
+             write-numofLikesPerDoc
+          ]
+          if (write-numofFollowersPerPeer?)
+          [
+             write-numofFollowersPerPeer
+          ]
+   ]
+end
 
 to write-Matrix
   file-open (word  directory-of-results  "-" the-random-seed "-" "follow-Matrix-" (total-number-of-turns / 60)  ".csv")  
@@ -29,7 +56,7 @@ to write-Matrix
        
 end
 
-to write-producer-payoff
+to write-consumerProducer-payoff
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
        file-type mean [score] of turtles with  [not document?   and  turtleType = "consumer" ] file-type " , " 
        file-type  mean [point] of turtles with [not document?   and  turtleType = "producer" ] file-type "\n " 
@@ -38,14 +65,14 @@ to write-producer-payoff
 end
 
 
-to write-payoff
+to write-consumers-payoff[ breed1 taste1  breed2 taste2 ]
   file-open (word  directory-of-results "-" the-random-seed "-" "payoff.csv")  
-       file-type mean [score] of turtles with  [not document? and  tags = [1] and turtleType = "consumer" ] file-type " , " 
-       file-type   mean  [score] of turtles with [not document? and tags = [0] and turtleType = "consumer" ] file-type "\n " 
+       file-type mean [score] of turtles with  [not document? and  breed = breed1 and tags = taste1  and turtleType = "consumer" ] file-type " , " 
+       file-type   mean  [score] of turtles with [not document? and breed = breed2 and tags = taste2 and turtleType = "consumer" ] file-type "\n " 
        
-  file-close       
-       
+  file-close             
 end
+
 
 to write-numofLikesPerTag
   

@@ -7,8 +7,6 @@ to setup
   set number-of-agents  60
   set number-of-iterations 80
  
-  let number-of-peer-tags 1
-  let number-of-doc-tags 1
   let k 5    
   simulator-setup
   
@@ -45,9 +43,13 @@ to setup
 
 create-document-popularity-leech-profiles 42 [profiles-setup k  1 [1] yellow "consumer"]
 create-document-popularity-profiles 18  [profiles-setup k 1 [1] red "consumer"]
-
-   
-
  
   my-layout    
+end
+
+
+to writeData
+
+       write-consumers-payoff document-popularity-leech-profiles [1]  document-popularity-profiles [1]
+   
 end

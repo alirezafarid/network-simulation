@@ -9,12 +9,12 @@ __includes [
   ;"Experiments/Part1-Uniform-MajorMinor/peer-distance/peer-distance.nls"
 
   ;Part 2
-  "Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
+  ;"Experiments/Part2-Mix/DocPop-PeerLikeSim/DocPop-peerLikeSim.nls"
   ;"Experiments/Part2-Mix/PeerPop-PeerLikeSim/PeerPop-peerLikeSim.nls"
 
   ;Part3
   ;"Experiments/Part3-Producer/DocPop/DocPopProducerConsumer.nls"
-  ;"Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
+  "Experiments/Part3-Producer/peerLikeSim/peerLikeSimProducerConsumer.nls"
 
   ;Part 4
   ;"Experiments/Part4-DoNothing/Doc-popularity/DocPop-leech.nls"
@@ -125,6 +125,7 @@ to simulator-setup
   reset-ticks
 
   ;;Set the random seed if a value for it was provided
+
   ifelse (random-seed?) [random-seed the-random-seed] [random-seed new-seed]
 
   set user nobody
@@ -144,8 +145,7 @@ end
 ;; GO PROCEDURE: This procedure is called once each 'tick', it is the top-level function for the running simulation
 to go
 
-   ;;Select a random peer
-
+   ;;Select a random peer that is not selected in the current iteration
     ifelse (length selection-list > 0)
      [
       set selected-agent one-of selection-list
@@ -161,6 +161,7 @@ to go
       ]
     ]
 
+
   ;ask the selected peer to act
   ask (turtle (selected-agent + number-of-documents)) [
 
@@ -174,9 +175,7 @@ to go
   ]
 
 tick
-writeData
-
-
+writeToFile
 
 end
 
@@ -216,39 +215,6 @@ end
 to highlight-peer
   ask other turtles [set size 1]      ;;reset the original sizes and colors
   set size 2.5
-end
-
-to writeData
-
-    if (iterationCounter = total-number-of-turns / number-of-agents)
-    [
-
-
-         if (write-matrix?)
-          [
-            write-matrix
-          ]
-          if (write-producer-payoff?)
-          [
-            write-producer-payoff
-          ]
-          if (write-payoff?)
-          [
-            write-payoff
-          ]
-          if (write-numofLikesPerTag?)
-          [
-            write-numofLikesPerTag
-          ]
-          if (write-numofLikesPerDoc?)
-          [
-             write-numofLikesPerDoc
-          ]
-          if (write-numofFollowersPerPeer?)
-          [
-             write-numofFollowersPerPeer
-          ]
-   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -436,7 +402,7 @@ INPUTBOX
 1345
 127
 directory-of-results
-Experiments/X5
+Experiments/X11
 1
 0
 String
@@ -497,24 +463,13 @@ write-numofFollowersPerTag?
 -1000
 
 SWITCH
-1146
-172
-1349
-205
-write-producer-payoff?
-write-producer-payoff?
-1
-1
--1000
-
-SWITCH
-906
-319
-1120
-352
+1130
+309
+1344
+342
 write-Matrix?
 write-Matrix?
-1
+0
 1
 -1000
 

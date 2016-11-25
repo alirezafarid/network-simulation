@@ -8,9 +8,6 @@ to setup
   set number-of-agents  60
   set number-of-iterations 80
  
-  let list-of-tags n-values 2 [?]
-  let number-of-peer-tags 1
-  let number-of-doc-tags 1
   let k 5    
   simulator-setup
   
@@ -30,4 +27,10 @@ to setup
 
 
   my-layout    
+end
+
+to writeData
+
+      write-consumers-payoff peer-distance-profiles [1]  peer-distance-profiles [0]
+    
 end

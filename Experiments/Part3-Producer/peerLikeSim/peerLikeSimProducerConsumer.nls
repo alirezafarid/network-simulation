@@ -7,14 +7,12 @@ to setup
   set number-of-documents 400
   set number-of-agents  60
   set number-of-iterations 80
- 
-  let number-of-peer-tags 1
-  let number-of-doc-tags 1
+
   let k 5    
   simulator-setup
 
-  create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
-  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+  create-documents (number-of-documents / 2)  [documents-setup 1 [0]]
+  create-documents (number-of-documents / 2)   [documents-setup 1 [1]]
   
 
 ;Setting 1
@@ -31,4 +29,9 @@ create-peer-similarity-profiles 18  [profiles-setup k  1 [0] red "consumer"]
  
 
   my-layout    
+end
+
+to writeData
+
+       write-consumerProducer-payoff      
 end

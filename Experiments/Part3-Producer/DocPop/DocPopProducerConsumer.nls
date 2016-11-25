@@ -12,8 +12,8 @@ to setup
   let k 5    
   simulator-setup  
 
-   create-documents (number-of-documents / 2)  [documents-setup number-of-doc-tags [0]]
-  create-documents (number-of-documents / 2)   [documents-setup number-of-doc-tags [1]]
+   create-documents (number-of-documents / 2)  [documents-setup 1 [0]]
+  create-documents (number-of-documents / 2)   [documents-setup 1 [1]]
   
 ;Setting 1
 
@@ -33,4 +33,9 @@ create-document-popularity-producer-profiles 18  [profiles-setup k  1 [1] red "p
 
 
   my-layout    
+end
+
+to writeData
+
+       write-consumerProducer-payoff      
 end
